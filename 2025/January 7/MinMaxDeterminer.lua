@@ -1,8 +1,7 @@
 function string.totable(input)
 	local iteratedString = {}
-	for num0 = 1, string.len(input), 1 do
-		table.insert(iteratedString, input:sub("%d+"))
-		io.write(iteratedString[num0])
+	for str in input:gmatch("%d+") do
+		io.write(str.."\n")
 	end
 end
 function __MAIN__(tArray)
