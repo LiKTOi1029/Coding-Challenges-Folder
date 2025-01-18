@@ -1,7 +1,21 @@
-tArray, lowestNum, highestNum, pointer = {69, 20, 55, 26, 85, 49, 98, 79, 10, 3, -4, 385, 492, -59, 38265}, nil, nil, math.huge
-for num0, item in ipairs(tArray) do
-    if tArray[num0-1] then pointer = tArray[num0-1] end
-    if pointer < tArray[num0] then highestNum = tArray[num0] end
-    if pointer > tArray[num0] then lowestNum = tArray[num0] end
+function string.totable(input)
+	local iteratedString = {}
+	for num0 = 1, string.len(input), 1 do
+		table.insert(iteratedString, input:sub("%d+"))
+		io.write(iteratedString[num0])
+	end
 end
-print("The largest number is "..highestNum.."\nand the smallest number is "..lowestNum)
+function __MAIN__(tArray)
+	local lowestNum, highestNum, pointer = nil, nil, math.huge
+	for num0, item in ipairs(tArray) do
+		if tArray[num0-1] then pointer = tArray[num0-1] end
+		if pointer < tArray[num0] then highestNum = tArray[num0] end
+		if pointer > tArray[num0] then lowestNum = tArray[num0] end
+	end
+	print("The largest number is "..highestNum.."\nand the smallest number is "..lowestNum)
+end
+repeat
+	io.write(">>Type out numbers separated by any non-integer character.\n>>Type EXIT to exit\n")
+	local choice = io.read("*l"):gsub("\n","")
+	if choice ~= "EXIT" then string.totable(choice) end
+until choice == "EXIT"
