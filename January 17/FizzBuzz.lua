@@ -1,0 +1,1 @@
+io.write("Please input a number: ")for num = 1, io.read(), 1 do if num % 15 == 0 then io.write("FizzBuzz, ") elseif num % 3 == 0 then io.write("Fizz, ") elseif num % 5 == 0 then io.write("Buzz, ") else io.write(num..", ") end end

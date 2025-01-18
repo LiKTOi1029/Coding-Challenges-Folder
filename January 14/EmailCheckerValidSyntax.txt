@@ -1,0 +1,4 @@
+mynameisbob - PLAIN TEXT. INVALID
+mynameisbob@thickcheeks.com - EMAIL. VALID
+
+VALID SYNTAX: <EMAIL NAME> @ <SERVICE PROVIDER> .com/.net/.org
