@@ -1,4 +1,11 @@
 -- I have redone this with my own code and expanded on it a bit.
+function Phraser(input, output, replacements)
+	local iteratedString = {}
+	for line in input:lines() do
+		if line == "[%.%-/]" then local isMorse = true
+		else local isMorse = false break end
+	end
+end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
 	local iteratedString = {}
@@ -8,7 +15,6 @@ function Translator(temporaryinput,replacements)
 	for num2, value in ipairs(iteratedString) do
 		if replacements[value] == nil then iteratedString[num2] = "#"
 		else iteratedString[num2] = replacements[value] end
-		print(tostring(iteratedString[num2]))
 	end
 	local output = table.concat(iteratedString, " ")
 	return output
@@ -51,5 +57,6 @@ repeat
 						[":"] = "---..."}
 	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
-	if input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
+	if input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") 
+	elseif input == "GO" then Phraser(io.open("input.txt", "r"), io.open("output.txt", "w"), MorseTable) end
 until input == "EXIT"
