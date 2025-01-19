@@ -1,11 +1,14 @@
 -- I have redone this with my own code and expanded on it a bit.
 function Phraser(input, output, replacements)
+	local isMorse = nil
 	local iteratedString = {}
 	for line in input:lines() do
 		if line == "[%.%-/]" then local isMorse = true
-		else local isMorse = false break end
+		else local isMorse = false; print("not morse"); break end
 	end
+	print("did it pass through here too?")
 	if isMorse == false then
+		print("here too?")
 		for line in input:lines() do
 			table.insert(iteratedString, line)
 		end
@@ -66,6 +69,6 @@ repeat
 						[":"] = "---..."}
 	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
-	if input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") 
-	elseif input == "GO" then Phraser(io.open("input.txt", "r"), io.open("output.txt", "w"), MorseTable) end
+	if input == "GO" then Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable)
+	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
