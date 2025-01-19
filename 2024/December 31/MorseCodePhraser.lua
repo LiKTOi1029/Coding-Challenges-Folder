@@ -69,3 +69,7 @@ repeat
 	if input == "GO" then Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable)
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
+--[[
+KNOWN BUGS
+1. local Translated in Phraser() function returns an empty string. Something is definitely not working right
+--]]
