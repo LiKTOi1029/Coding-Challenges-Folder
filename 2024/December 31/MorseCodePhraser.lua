@@ -5,11 +5,9 @@ function Phraser(input, output, replacements)
 	local iteratedString = {}
 	for line in input:lines() do
 		if line == "[%.%-/]" then isMorse = true
-		else isMorse = false; print("not morse"); break end
+		else isMorse = false; break end
 	end
-	print("did it pass through here too?")
 	if isMorse == false then
-		print("here too?")
 		for line in input:lines() do
 			table.insert(iteratedString, line)
 		end
