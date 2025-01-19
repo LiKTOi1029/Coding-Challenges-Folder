@@ -5,6 +5,15 @@ function Phraser(input, output, replacements)
 		if line == "[%.%-/]" then local isMorse = true
 		else local isMorse = false break end
 	end
+	if isMorse == false then
+		for line in input:lines() do
+			table.insert(iteratedString, line)
+		end
+		for num1, value in ipairs(iteratedString) do
+			value:gsub("\n", " ")
+			print(iteratedString[num1].."|"..value)
+		end
+	end
 end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
