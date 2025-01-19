@@ -1,10 +1,11 @@
 -- I have redone this with my own code and expanded on it a bit.
 function Phraser(input, output, replacements)
+	local Translated = nil
 	local isMorse = nil
 	local iteratedString = {}
 	for line in input:lines() do
-		if line == "[%.%-/]" then local isMorse = true
-		else local isMorse = false; print("not morse"); break end
+		if line == "[%.%-/]" then isMorse = true
+		else isMorse = false; print("not morse"); break end
 	end
 	print("did it pass through here too?")
 	if isMorse == false then
@@ -12,11 +13,9 @@ function Phraser(input, output, replacements)
 		for line in input:lines() do
 			table.insert(iteratedString, line)
 		end
-		for num1, value in ipairs(iteratedString) do
-			value:gsub("\n", " ")
-			print(iteratedString[num1].."|"..value)
-		end
+		Translated = Translator(table.concat(iteratedString, ""), replacements)
 	end
+	print(Translated)
 end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
