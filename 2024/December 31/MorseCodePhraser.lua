@@ -24,17 +24,15 @@ function Phraser(input, output, replacements, replacements2)
 	return "done!"
 end
 function MorseTranslator(input, replacements)
-	local PasserString, iteratedMorse = "", {}
-	for num4 = 1, input:len(), 1 do
-		if input:sub(num4,num4) ~= " " then PasserString = PasserString..input:sub(num4,num4)
+	local PasserString, iteratedMorse, iteratedMorseSecondEdition = "", {}, {}
+	for num4 = 0, input:len(), 1 do
+		if input:sub(num4,num4) ~= " " or input:len() == num4 then PasserString = PasserString..input:sub(num4,num4)
 		else table.insert(iteratedMorse,PasserString); PasserString = ""; table.insert(iteratedMorse, " ") end
 	end
 	for num3, value in ipairs(iteratedMorse) do
-		print(value.." | "..num3)
-		table.insert(iteratedMorse, replacements[tostring(value)])
-		print(iteratedMorse[num3])
+		table.insert(iteratedMorseSecondEdition, replacements[tostring(value)])
 	end
-	return table.concat(iteratedMorse)
+	return table.concat(iteratedMorseSecondEdition)
 end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
@@ -57,3 +55,8 @@ repeat
 	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable, ReverseTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
+--[[
+KNOWN BUGS:
+1. When translating from morse to english, it does not type in the last letter of the entire string
+2. Cannot translate from morse to english in the terminal, must be done in file format
+--]]
