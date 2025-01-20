@@ -1,19 +1,21 @@
 -- I have redone this with my own code and expanded on it a bit.
-function Phraser(input, output, replacements)
+function Phraser(input, output, replacements, replacements2)
 	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*line")
 	if firstLine == "[%.%-/]" then isMorse = true else isMorse = false end
-	if isMorse == false then
-		table.insert(iteratedString, firstLine)
-		for line in input:lines() do
-			table.insert(iteratedString, line)
-		end
-		Translated = Translator(table.concat(iteratedString), replacements)
-		output:write(Translated)
-		output:close()
+	table.insert(iteratedString, firstLine)
+	for line in input:lines() do
+		table.insert(iteratedString, line)
 	end
+	if isMorse == false then
+	Translated = Translator(table.concat(iteratedString), replacements)
+	elseif isMorse == true then
+	Translated = Translator(table.concat(iteratedString), replacements2)
+	end
+	output:write(Translated)
+	output:close()
 	return "done!"
 end
-function Translator(temporaryinput,replacements)
+function Translator(temporaryinput,replacements,morse)
 	local input = temporaryinput:lower()
 	local iteratedString = {}
 	for num1 = 1, input:len(), 1 do
@@ -31,6 +33,6 @@ repeat
 	if ReverseTable == {} then local ReverseTable = {}; for value2, value in pairs(MorseTable) do ReverseTable[value] = value2 end end
 	io.write(">>Please refer to README.md\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
-	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable).."\n")
+	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable, ReverseTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
