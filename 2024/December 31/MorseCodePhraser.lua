@@ -1,32 +1,40 @@
 -- I have redone this with my own code and expanded on it a bit.
+function table.fuckaround(Table)
+	local number = 0
+	for _ in pairs(table) do
+	number = number + 1
+	end
+	return number
+end
 function Phraser(input, output, replacements, replacements2)
 	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*l")
 	if string.find(string.lower(firstLine), "%a+") then isMorse = false elseif string.find(firstLine, "[.-/]") then isMorse = true else isMorse = "Please type in a valid input" end
 	print("Morse is "..tostring(isMorse))
 	table.insert(iteratedString, firstLine)
-	print(firstLine.." | "..iteratedString[1])
 	for line in input:lines() do
 		table.insert(iteratedString, line)
 	end
 	if isMorse == false then
 		Translated = Translator(table.concat(iteratedString), replacements)
 	elseif isMorse == true then
-		Translated = MorseTranslator(iteratedString, replacements2)
+		Translated = MorseTranslator(table.concat(iteratedString, " "), replacements2)
 	end
 	output:write(tostring(Translated))
 	output:close()
 	return "done!"
 end
 function MorseTranslator(input, replacements)
-	
-	
-	
-	for num3, value in ipairs(input) do
-		--print(value.." | "..num3)
-		input[num3] = replacements[value]
+	local PasserString, iteratedMorse = "", {}
+	for num4 = 1, input:len(), 1 do
+		if input:sub(num4,num4) ~= " " then PasserString = PasserString..input:sub(num4,num4)
+		else table.insert(iteratedMorse,PasserString); PasserString = ""; table.insert(iteratedMorse, " ") end
 	end
-	print(table.concat(input))
-	return table.concat(input)
+	for num3, value in ipairs(iteratedMorse) do
+		print(value.." | "..num3)
+		table.insert(iteratedMorse, replacements[tostring(value)])
+		print(iteratedMorse[num3])
+	end
+	return table.concat(iteratedMorse)
 end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
