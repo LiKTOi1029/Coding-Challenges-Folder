@@ -1,3 +1,0 @@
-Type anything to translate it in the terminal
-Type GO to translate the contents of 'input.txt' and output it into 'output.txt'
-Type EXIT to exit

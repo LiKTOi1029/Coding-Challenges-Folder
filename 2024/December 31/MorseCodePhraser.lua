@@ -29,7 +29,7 @@ end
 repeat
 	local MorseTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-."}
 	if ReverseTable == {} then local ReverseTable = {}; for value2, value in pairs(MorseTable) do ReverseTable[value] = value2 end end
-	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
+	io.write(">>Please refer to README.md\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
 	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
