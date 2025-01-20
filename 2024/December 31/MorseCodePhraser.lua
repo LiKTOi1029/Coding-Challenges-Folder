@@ -1,16 +1,11 @@
 -- I have redone this with my own code and expanded on it a bit.
 function Phraser(input, output, replacements)
-	local Translated = nil
-	local isMorse = nil
-	local iteratedString = {}
-	local firstLine = input:read("*line")
+	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*line")
 	if firstLine == "[%.%-/]" then isMorse = true else isMorse = false end
 	if isMorse == false then
 		table.insert(iteratedString, firstLine)
-		print(iteratedString[1])
 		for line in input:lines() do
 			table.insert(iteratedString, line)
-			print("passed through here too".." | "..line)
 		end
 		Translated = Translator(table.concat(iteratedString), replacements)
 		output:write(Translated)
