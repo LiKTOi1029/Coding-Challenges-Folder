@@ -20,4 +20,4 @@ Input: .... --- .-- / .- .-. . / -.-- -- ..- / -.. --- .. -. --. / - --- -.. .- 
 Output: How are you doing today?\
 \
 MESSAGE FROM THE DEV AT THE TIME:\
-Please input GO and input Morse code into the `input.txt` file terminal translator doesn't work just the file one
+Please input GO and input Morse code into the `input.txt` file terminal translator doesn't work for Morse to English translations.
