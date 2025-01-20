@@ -1,4 +1,4 @@
-# Morse Code Phraser
+# Morse Code Translator
 
 This is a project I started in Dec 31 of 2024 and didn't do a very good job at making it so here is a second version of the same script, but better!\
 \
