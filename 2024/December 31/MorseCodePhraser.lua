@@ -3,17 +3,20 @@ function Phraser(input, output, replacements)
 	local Translated = nil
 	local isMorse = nil
 	local iteratedString = {}
-	for line in input:lines() do
-		if line == "[%.%-/]" then isMorse = true
-		else isMorse = false; break end
-	end
+	local firstLine = input:read("*line")
+	if firstLine == "[%.%-/]" then isMorse = true else isMorse = false end
 	if isMorse == false then
+		table.insert(iteratedString, firstLine)
+		print(iteratedString[1])
 		for line in input:lines() do
 			table.insert(iteratedString, line)
+			print("passed through here too".." | "..line)
 		end
-		Translated = Translator(table.concat(iteratedString, ""), replacements)
+		Translated = Translator(table.concat(iteratedString), replacements)
+		output:write(Translated)
+		output:close()
 	end
-	print(Translated)
+	return "done!"
 end
 function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
@@ -66,7 +69,7 @@ repeat
 						[":"] = "---..."}
 	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
-	if input == "GO" then Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable)
+	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
 --[[
