@@ -12,4 +12,9 @@ Output: .... . .-.. .-.. --- / - .... . .-. . -.-.--\
 In even supports punctuation on a basic level\
 \
 Input: Name@Email.com\
-Output: -. .- -- . .--.-. . -- .- .. .-.. .-.-.- -.-. --- --
+Output: -. .- -- . .--.-. . -- .- .. .-.. .-.-.- -.-. --- --\
+\
+On top of that it is also backwards compatible! Type morse code and get english translations!\
+\
+Input: .... --- .-- / .- .-. . / -.-- -- ..- / -.. --- .. -. --. / - --- -.. .- -.-- ..--..\
+Output: How are you doing today?
