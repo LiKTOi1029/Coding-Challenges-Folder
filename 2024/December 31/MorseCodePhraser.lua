@@ -1,4 +1,5 @@
 -- I have redone this with my own code and expanded on it a bit.
+ReverseTable = {}
 function Phraser(input, output, replacements)
 	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*line")
 	if firstLine == "[%.%-/]" then isMorse = true else isMorse = false end
@@ -27,42 +28,8 @@ function Translator(temporaryinput,replacements)
 	return output
 end
 repeat
-	local MorseTable = {["a"] = ".-",
-						["b"] = "-...",
-						["c"] = "-.-.",
-						["d"] = "-..",
-						["e"] = ".",
-						["f"] = "..-.",
-						["g"] = "--.",
-						["h"] = "....",
-						["i"] = "..",
-						["j"] = ".---",
-						["k"] = "-.-",
-						["l"] = ".-..",
-						["m"] = "--",
-						["n"] = "-.",
-						["o"] = "---",
-						["p"] = ".--.",
-						["q"] = "--.-",
-						["r"] = ".-.",
-						["s"] = "...",
-						["t"] = "-",
-						["u"] = "..-",
-						["v"] = "...-",
-						["w"] = ".--",
-						["x"] = "-..-",
-						["y"] = "-.--",
-						["z"] = "--..",
-						["."] = ".-.-.-",
-						["?"] = "..--..",
-						["@"] = ".--.-.",
-						["!"] = "-.-.--",
-						["'"] = ".----.",
-						[","] = "--..--",
-						["\n"] = ".-.-",
-						[" "] = "/",
-						[":"] = "---...",
-						[";"] = "-.-.-."}
+	local MorseTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-."}
+	if ReverseTable == {} then for num3, value in pairs(MorseTable) do end end
 	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
 	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable).."\n")
