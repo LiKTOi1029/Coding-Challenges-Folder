@@ -1,21 +1,22 @@
 -- I have redone this with my own code and expanded on it a bit.
 function Phraser(input, output, replacements, replacements2)
-	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*line")
-	if firstLine == "[%.%-/]" then isMorse = true else isMorse = false end
+	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*l")
+	if string.find(firstLine, "[.-/]")then isMorse = true else isMorse = false end
+	print("Morse is "..tostring(isMorse))
 	table.insert(iteratedString, firstLine)
 	for line in input:lines() do
 		table.insert(iteratedString, line)
 	end
 	if isMorse == false then
-	Translated = Translator(table.concat(iteratedString), replacements)
+		Translated = Translator(table.concat(iteratedString), replacements)
 	elseif isMorse == true then
-	Translated = Translator(table.concat(iteratedString), replacements2)
+		Translated = Translator(table.concat(iteratedString), replacements2)
 	end
 	output:write(Translated)
 	output:close()
 	return "done!"
 end
-function Translator(temporaryinput,replacements,morse)
+function Translator(temporaryinput,replacements)
 	local input = temporaryinput:lower()
 	local iteratedString = {}
 	for num1 = 1, input:len(), 1 do
