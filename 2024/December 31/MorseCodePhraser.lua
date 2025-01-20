@@ -53,7 +53,7 @@ repeat
 						["x"] = "-..-",
 						["y"] = "-.--",
 						["z"] = "--..",
-						["."] = "-.-.-.",
+						["."] = ".-.-.-",
 						["?"] = "..--..",
 						["@"] = ".--.-.",
 						["!"] = "-.-.--",
@@ -61,7 +61,8 @@ repeat
 						[","] = "--..--",
 						["\n"] = ".-.-",
 						[" "] = "/",
-						[":"] = "---..."}
+						[":"] = "---...",
+						[";"] = "-.-.-."}
 	io.write(">>Please refer to Guide.txt\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
 	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable).."\n")
