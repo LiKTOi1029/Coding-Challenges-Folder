@@ -1,11 +1,3 @@
--- I have redone this with my own code and expanded on it a bit.
---[[function table.fuckaround(Table)
-	local number = 0
-	for _ in pairs(Table) do
-		number = number + 1
-	end
-	return number
-end--]]
 function Phraser(input, output, replacements, replacements2, permaplacements)
 	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*l")
 	if string.find(string.lower(firstLine), "%a+") then isMorse = false elseif string.find(firstLine, "[.-/]") then isMorse = true else isMorse = "Please type in a valid input" end
