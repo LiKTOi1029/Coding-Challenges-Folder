@@ -1,3 +1,1 @@
-English goes into here! We also support basic punctuation ; ' . :
-And even emails!
-SomeEmailName@EmailProvider.com
+Hello there! You can translate into Morse from English and back to English from Morse! Enjoy!
