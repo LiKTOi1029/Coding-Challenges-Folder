@@ -50,9 +50,3 @@ repeat
 	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable, ReverseTable, PermaTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
---[[
-KNOWN BUGS:
-1. Cannot translate new lines into notepad causing inconsistencies
-2. Cannot translate from morse to english in the terminal, must be done in file format
-3. Cannot edit input.txt while terminal is open. This is inconvenient
---]]
