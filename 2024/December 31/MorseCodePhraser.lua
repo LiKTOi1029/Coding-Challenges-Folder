@@ -54,5 +54,5 @@ until input == "EXIT"
 KNOWN BUGS:
 1. Cannot translate new lines into notepad causing inconsistencies
 2. Cannot translate from morse to english in the terminal, must be done in file format
-3. Cannot edit input.txt while terminal is open. This is invoncenient
+3. Cannot edit input.txt while terminal is open. This is inconvenient
 --]]
