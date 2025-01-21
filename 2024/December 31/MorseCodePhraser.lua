@@ -60,6 +60,6 @@ repeat
 until input == "EXIT"
 --[[
 KNOWN BUGS:
-1. When translating from morse to english, it does not type in the last letter of the entire string
+1. Cannot translate new lines into notepad causing inconsistencies
 2. Cannot translate from morse to english in the terminal, must be done in file format
 --]]
