@@ -1,12 +1,12 @@
 -- I have redone this with my own code and expanded on it a bit.
-function table.fuckaround(Table)
+--[[function table.fuckaround(Table)
 	local number = 0
 	for _ in pairs(Table) do
-	number = number + 1
+		number = number + 1
 	end
 	return number
-end
-function Phraser(input, output, replacements, replacements2)
+end--]]
+function Phraser(input, output, replacements, replacements2, permaplacements)
 	local Translated, isMorse, iteratedString, firstLine = nil, nil, {}, input:read("*l")
 	if string.find(string.lower(firstLine), "%a+") then isMorse = false elseif string.find(firstLine, "[.-/]") then isMorse = true else isMorse = "Please type in a valid input" end
 	print("Morse is "..tostring(isMorse))
@@ -17,11 +17,11 @@ function Phraser(input, output, replacements, replacements2)
 	if isMorse == false then
 		Translated = Translator(table.concat(iteratedString), replacements)
 	elseif isMorse == true then
-		table.insert(iteratedString, " ")
-		Translated = MorseTranslator(table.concat(iteratedString, " "), replacements2)
+		Translated = MorseTranslator(table.concat(iteratedString, " "), replacements2, permaplacements)
 	end
 	output:write(tostring(Translated))
 	output:close()
+	
 	return "done!"
 end
 function MorseTranslator(input, replacements)
@@ -51,15 +51,16 @@ function Translator(temporaryinput,replacements)
 	return output
 end
 repeat
-	local MorseTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-.",}
+	local MorseTable, PermaTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-.",}, {[">||<"] = "\n",}
 	if ReverseTable == nil then ReverseTable = {}; for value2, value in pairs(MorseTable) do ReverseTable[value] = value2; print(value.. " "..value2) end end
 	io.write(">>Please refer to README.md\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
-	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable, ReverseTable).."\n")
+	if input == "GO" then io.write(Phraser(io.open("input.txt", "r+"), io.open("output.txt", "w+"), MorseTable, ReverseTable, PermaTable).."\n")
 	elseif input ~= "EXIT" then io.write(Translator(input,MorseTable).."\n") end
 until input == "EXIT"
 --[[
 KNOWN BUGS:
 1. Cannot translate new lines into notepad causing inconsistencies
 2. Cannot translate from morse to english in the terminal, must be done in file format
+3. Cannot edit input.txt while terminal is open. This is invoncenient
 --]]
