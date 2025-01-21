@@ -17,6 +17,7 @@ function Phraser(input, output, replacements, replacements2)
 	if isMorse == false then
 		Translated = Translator(table.concat(iteratedString), replacements)
 	elseif isMorse == true then
+		table.insert(iteratedString, " ")
 		Translated = MorseTranslator(table.concat(iteratedString, " "), replacements2)
 	end
 	output:write(tostring(Translated))
@@ -25,12 +26,14 @@ function Phraser(input, output, replacements, replacements2)
 end
 function MorseTranslator(input, replacements)
 	local PasserString, iteratedMorse, iteratedMorseSecondEdition = "", {}, {}
-	for num4 = 0, input:len(), 1 do
-		if input:sub(num4,num4) ~= " " or input:len() == num4 then PasserString = PasserString..input:sub(num4,num4)
-		else table.insert(iteratedMorse,PasserString); PasserString = ""; table.insert(iteratedMorse, " ") end
+	print(input)
+	for num4 = 1, input:len(), 1 do
+		if input:sub(num4,num4) ~= " " then PasserString = PasserString..input:sub(num4,num4); print(input:sub(num4,num4))
+		elseif input:sub(num4,num4) == " " or num4 == input:len() then table.insert(iteratedMorse, PasserString); print(PasserString); PasserString = "" end
 	end
-	for num3, value in ipairs(iteratedMorse) do
-		table.insert(iteratedMorseSecondEdition, replacements[tostring(value)])
+	for num3 = 1, #iteratedMorse, 1 do
+		if iteratedMorse[num3] then table.insert(iteratedMorseSecondEdition, replacements[iteratedMorse[num3]]); print(table.concat(iteratedMorseSecondEdition).." | "..tostring(replacements[iteratedMorse[num3]])) end
+		print(tostring(iteratedMorse[num3]))
 	end
 	return table.concat(iteratedMorseSecondEdition)
 end
@@ -48,7 +51,7 @@ function Translator(temporaryinput,replacements)
 	return output
 end
 repeat
-	local MorseTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-."}
+	local MorseTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-.",}
 	if ReverseTable == nil then ReverseTable = {}; for value2, value in pairs(MorseTable) do ReverseTable[value] = value2; print(value.. " "..value2) end end
 	io.write(">>Please refer to README.md\n>>Type EXIT to exit the script.\n")
 	local input = io.read("*l"):gsub("\n","")
