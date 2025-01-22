@@ -11,8 +11,10 @@ function EnglishTranslator(firstline, input, output)
 		table.insert(iteratedString, MorseTable[string.lower(firstline:sub(num1,num1))])
 		print(iteratedString[num1])
 	end
-	if input and output then for num2, str in input:lines() do 
-		table.insert(iteratedString, MorseTable[str])
+	if input and output then for num2, str in input:lines() do
+		for num3 = 1, str:len(), 1 do
+				table.insert(iteratedString, MorseTable[string.lower(str:sub(num1,num1))])
+			end
 		end
 	end
 	local result = table.concat(iteratedString, " ")
