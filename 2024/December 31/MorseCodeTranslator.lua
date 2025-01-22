@@ -1,5 +1,5 @@
 MorseTable, PermaTable = {["a"] = ".-",["b"] = "-...",["c"] = "-.-.",["d"] = "-..",["e"] = ".",["f"] = "..-.",["g"] = "--.",["h"] = "....",["i"] = "..",["j"] = ".---",["k"] = "-.-",["l"] = ".-..",["m"] = "--",["n"] = "-.",["o"] = "---",["p"] = ".--.",["q"] = "--.-",["r"] = ".-.",["s"] = "...",["t"] = "-",["u"] = "..-",["v"] = "...-",["w"] = ".--",["x"] = "-..-",["y"] = "-.--",["z"] = "--..",["."] = ".-.-.-",["?"] = "..--..",["@"] = ".--.-.",["!"] = "-.-.--",["'"] = ".----.",[","] = "--..--",["\n"] = ".-.-",[" "] = "/",[":"] = "---...",[";"] = "-.-.-.",}, {[">||<"] = "\n",}
-ReverseTable = {}; for key, value in pairs(MorseTable) do ReverseTable[value] = key; print(value.. " "..value2) end
+ReverseTable = {}; for key, value in pairs(MorseTable) do ReverseTable[value] = key; print(value.. " "..key) end
 function Determiner(userchoice, input, output)
 	local firstline
 	if userchoice == "GO" then firstline = input:read("*l") else firstline = userchoice end
@@ -23,9 +23,11 @@ function MorseTranslator(firstline, input, output)
 end
 function ChoiceMenu()
 	repeat
+		io.flush()
 		print("Type anything to translate. Type GO to translate input file into output file.\nType EXIT to exit the script")
 		local userchoice = io.read():gsub("\n","")
-		if userchoice == "GO" then print(Determiner(userchoice, io.open("input.txt","r"), io.open("output.txt","w+")) else Determiner(userchoice) end)
-	until userchoice ~= "EXIT"
+		if userchoice == "GO" then io.write(Determiner(userchoice, io.open("input.txt","r"), io.open("output.txt","w+"))) else io.write(Determiner(userchoice)) end
+	until userchoice == "EXIT"
+	io.flush()
 end
 ChoiceMenu()
