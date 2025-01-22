@@ -31,7 +31,7 @@ function ChoiceMenu()
 		io.flush()
 		print("Type anything to translate. Type GO to translate input file into output file.\nType EXIT to exit the script")
 		local userchoice = io.read():gsub("\n","")
-		if userchoice == "GO" then io.write(Determiner(io.open("input.txt","r"), io.open("output.txt","w+"), string.lower(userchoice)))
+		if userchoice == "GO" then io.write(Determiner(io.open("input.txt","r"), io.open("output.txt","w+"), string.lower(userchoice)).."\n")
 		elseif userchoice == "EXIT" then return nil
 		else io.write(Determiner(nil, nil, string.lower(userchoice)).."\n") end
 	end
