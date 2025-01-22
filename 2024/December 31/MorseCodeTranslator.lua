@@ -8,7 +8,7 @@ end
 function EnglishTranslator(firstline, input, output)
 	local iteratedString = {}
 	for num1 = 1, firstline:len(), 1 do
-		table.insert(iteratedString, MorseTable[firstline:sub(num1,num1)])
+		table.insert(iteratedString, MorseTable[string.lower(firstline:sub(num1,num1))])
 		print(iteratedString[num1])
 	end
 	if input and output then for num2, str in input:lines() do 
@@ -26,7 +26,7 @@ function ChoiceMenu()
 		io.flush()
 		print("Type anything to translate. Type GO to translate input file into output file.\nType EXIT to exit the script")
 		local userchoice = io.read():gsub("\n","")
-		if userchoice == "GO" then io.write(Determiner(userchoice, io.open("input.txt","r"), io.open("output.txt","w+"))) else io.write(Determiner(userchoice)) end
+		if userchoice == "GO" then io.write(Determiner(string.lower(userchoice), io.open("input.txt","r"), io.open("output.txt","w+"))) else io.write(Determiner(string.lower(userchoice))) end
 	until userchoice == "EXIT"
 	io.flush()
 end
