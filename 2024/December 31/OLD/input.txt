@@ -1,0 +1,1 @@
+This is the old morse code translator with the messy code. I remade it but with a better structure so that I would not regret it in the future.
