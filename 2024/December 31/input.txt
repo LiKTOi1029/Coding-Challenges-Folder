@@ -1,1 +1,2 @@
-Hello there! You can translate into Morse from English and back to English from Morse! Enjoy!
+this is a test
+this is another test
