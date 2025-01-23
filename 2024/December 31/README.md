@@ -20,4 +20,4 @@ Input: .. / .- -- / ... --- -- . / -- ... .-. ... . / -.-. --- -.. .\
 Output: i am some morse code\
 \
 Input: .... . .-. . / .. ... / .- / .--. ..- -. -.-. - ..- .- - .. --- -. / -- .- .-. -.- -.-.--\
-Ouptut here is a punctuation mark!
+Output: here is a punctuation mark!
