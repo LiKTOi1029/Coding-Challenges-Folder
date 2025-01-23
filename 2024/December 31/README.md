@@ -14,5 +14,10 @@ In even supports punctuation on a basic level\
 Input: Name@Email.com\
 Output: -. .- -- . .--.-. . -- .- .. .-.. .-.-.- -.-. --- --\
 \
-**<DISCLAIMER> THIS FILE TRANSLATOR CANNOT TRANSLATE MORSE TO ENGLISH DIRECTLY FROM THE TERMINAL YET**\
-On top of that it is also backwards compatible! Type morse code and get english translations! Type Morse Code into `input.txt` and input GO into the terminal to output!
+Additionally, this is backwards compatible! Both in the terminal and in the actual files!\
+\
+Input: .. / .- -- / ... --- -- . / -- ... .-. ... . / -.-. --- -.. .\
+Output: i am some morse code\
+\
+Input: .... . .-. . / .. ... / .- / .--. ..- -. -.-. - ..- .- - .. --- -. / -- .- .-. -.- -.-.--\
+Ouptut here is a punctuation mark!
