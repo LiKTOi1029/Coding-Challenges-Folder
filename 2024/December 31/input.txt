@@ -1,2 +1,1 @@
-this is a test
-this is another test
+This takes in morse code and also takes in English. It additionally supports basic punctuation and email support. Email@ServiceProvider.com is perfectly valid for instance and will translate into morse code
