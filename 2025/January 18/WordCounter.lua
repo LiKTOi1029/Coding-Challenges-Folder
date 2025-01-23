@@ -7,10 +7,7 @@ function string.wc(input)
 	end
 	return count
 end
-function MAIN()
-	repeat
+repeat
 	local choice = io.read("*l"):gsub("\n","")
 	if choice ~= "EXIT" then print(string.wc(tostring(choice))) end
-	until choice == "EXIT"
-end
-MAIN()
+until choice == "EXIT"
