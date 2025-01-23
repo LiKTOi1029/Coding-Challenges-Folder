@@ -1,4 +1,4 @@
-#ArrayRotater
+# ArrayRotater
 
 This is a script that takes a file input and randomizes the lines.\
 	input:\
