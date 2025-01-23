@@ -40,7 +40,7 @@ function MorseTranslator(firstline, input, output)
 		output:write(result);output:close();input:close()
 		return result
 	end
-	local result = table.concat(iteratedString, " ")
+	local result = table.concat(iteratedString, "")
 	return result
 end
 function ChoiceMenu()
