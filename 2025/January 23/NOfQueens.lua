@@ -13,14 +13,21 @@ function chessboardbuilder(input)
 	return queens(wholeboard,input)
 end
 function queens(chessboard,input)
+	local num6 = 1
 	for num3, rows in ipairs(chessboard) do
 		for num4, squares in ipairs(rows) do
 			squares = "Q"
-			for _, rows2 in ipairs(chessboard) do
-				local num6 = 1
-				if rows2[num4] == "Q" then break
-				elseif rows2[num4+num6] == "Q" then break
-				elseif rows2[num4-num6] == "Q" then break end
+			for num5 = num3, 1, -1 do
+				if chessboard[num5[num4]] == "Q" then break
+				elseif chessboard[num5[num4+num6]] == "Q" then break
+				elseif chessboard[num5[num4-num6]] == "Q" then break end
+				num6=num6+1
+			end
+			num6 = 1
+			for num7 = num3, #chessboard, 1 do
+				if chessboard[num5[num4]] == "Q" then break
+				elseif chessboard[num5[num4+num6]] == "Q" then break
+				elseif chessboard[num5[num4+num6]] == "Q" then break end
 				num6=num6+1
 			end
 			squares = "X"
