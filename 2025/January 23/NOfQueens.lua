@@ -3,11 +3,18 @@ function chessboardbuilder(input)
 	for num1 = 1, input, 1 do
 		local newtable = {}
 		for num2 = 1, input, 1 do
-			table.insert(newtable, "X")
+			if num2 = 1 then table.insert(newtable, "Q")
+			else table.insert(newtable, "X") end
 			io.write(newtable[num2])
 		end
 		io.write("\n")
 		wholeboard[num1] = newtable
+	end
+	return wholeboard
+end
+function queens(chessboard,input)
+	for num3, squares in ipairs(chessboard) do
+	
 	end
 end
 repeat
