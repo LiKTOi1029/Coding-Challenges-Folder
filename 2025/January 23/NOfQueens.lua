@@ -19,11 +19,11 @@ function queens(chessboard,input)
 	for num3, rows in ipairs(chessboard) do
 		for num4, squares in ipairs(rows) do
 			squares = "Q"
-			for num5, _2 in ipairs(chessboard) do
+			for _, rows2 in ipairs(chessboard) do
 				local num6 = 1
-				if rows[num4] == "Q" then break
-				elseif rows[num4+num6] == "Q" then break
-				elseif rows[num4-num6] == "Q" then break end
+				if rows2[num4] == "Q" then break
+				elseif rows2[num4+num6] == "Q" then break
+				elseif rows2[num4-num6] == "Q" then break end
 				num6=num6+1
 			end
 			squares = "X"
