@@ -1,6 +1,3 @@
-function ticker(chessboard, input, ) 
-
-end
 function chessboardbuilder(input)
 	local wholeboard = {}
 	for num1 = 1, input, 1 do
