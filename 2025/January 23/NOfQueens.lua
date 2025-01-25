@@ -29,10 +29,10 @@ function queens(chessboard,input)
 				verticalAxis = chessboard[num7]
 				if verticalAxis[num4] == "Q" then break
 				elseif verticalAxis[num4+num6] == "Q" then break
-				elseif verticalAxis[num4+num6] == "Q" then break end
+				elseif verticalAxis[num4-num6] == "Q" then break end
 				num6=num6+1
 			end
-			squares = "X"
+			if num4 < #rows then squares = "X" end
 		end
 	end
 	return chessboard
