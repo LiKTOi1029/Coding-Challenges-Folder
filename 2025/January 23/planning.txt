@@ -25,6 +25,9 @@ So really right now the goal is to get the script to iterate over every single q
 the function to check if any queen is attacking any other queen. The algorith I initially came up with and will use
 is this:
 
+ADDITONAL NOTES:
+
+This is the algorithm to check if the currently selected queen is attacking or being attacked by any other queen
 These are the variables used. I will not rewrite their definitions unless I add new variables. Be sure to remember them
 
 QP = Queen's Position on the array
@@ -73,3 +76,6 @@ Function BoardChecker(Chessboard) do
 	if QueenCount == Input then return 1
 	else return 0 end
 end
+
+This next function will be for iterating over every single position on the board. This should actually be pretty 
+easy to implement all things considered.
