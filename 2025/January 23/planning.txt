@@ -36,7 +36,7 @@ DiagonalNumber = A number that increases by 1 in every single iteration of a loo
 Chessboard = The entire chessboard. Separated into individual arrays/rows (array of arrays/table of tables)
 Row = a single array in the chessboard (representing the Row of the queen being iterated through specifically)
 
-Function QueenChecker(Row) do
+Function QueenChecker(Row)
 	For CurrentlySelectedRow = Row, 1, -1 do --This is iterating over the squares in a vertical line above the queen to check for attacks
 		if Chessboard[CurrentlySelectedRow][QP] == "Q" then NOT A SOLUTION --top vertical check
 		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then NOT A SOLUTION --QP to top right diagional check
@@ -69,7 +69,7 @@ Input = This is the inputted N. if all N queens are solved (not being attacked/a
 Row = In this specifically it is just the currently selected row on the Chessboard table/array
 QueenCount = How many queens are solved. If QueenCount == Input then it is a solved position
 
-Function BoardChecker(Chessboard) do
+Function BoardChecker(Chessboard)
 	For unusedIntVariable, Row in ipairs(Chessboard) do
 		if QueenChecker(Row) == clear then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
 	end
@@ -79,3 +79,10 @@ end
 
 This next function will be for iterating over every single position on the board. This should actually be pretty 
 easy to implement all things considered.
+
+Function PosIterator(Chessboard)
+	for unusedIntVariable, Row in ipairs(Chessboard) do
+		
+		
+	end
+end
