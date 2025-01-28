@@ -80,9 +80,26 @@ end
 This next function will be for iterating over every single position on the board. This should actually be pretty 
 easy to implement all things considered.
 
-Function PosIterator(Chessboard)
+Function PosIterator(Chessboard,Input)
+	local count, retvalue, solutionsnumber = 0, 0, 0
+	repeat
+		for unusedIntVariable, Row in ipairs(Chessboard) do
+			retvalue = retvalue + BoardChecker(Chessboard)
+			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
+			else break end
+		end
+		for positionInt, Squares in ipairs(Chessboard[count+1]) do
+			if Squares == "Q" then Chessboard[count+1][positionInt] = Chessboard[count+1][positionInt+1]; break end
+		end
+	until true == AllQueensIterated(Chessboard,Input)
+	return retValue
+end
+
+function AllQueensIterated(Chessboard,Input)
+	local count = 0
 	for unusedIntVariable, Row in ipairs(Chessboard) do
-		
-		
+		if Row[Input] == "Q" then count = count+1 end
 	end
+	if count == Input then return true
+	else return false end
 end
