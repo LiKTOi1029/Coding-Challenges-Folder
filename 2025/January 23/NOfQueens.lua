@@ -3,7 +3,7 @@ function queencounter(queenpos)
 	return true
 end
 function BoardChecker(Chessboard)
-	For unusedIntVariable, Row in ipairs(Chessboard) do
+	for unusedIntVariable, Row in ipairs(Chessboard) do
 		if QueenChecker(Row) == true then QueenCount+1 end
 	end
 	if QueenCount == Input then return 1
