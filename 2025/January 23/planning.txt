@@ -36,7 +36,7 @@ DiagonalNumber = A number that increases by 1 in every single iteration of a loo
 Chessboard = The entire chessboard. Separated into individual arrays/rows (array of arrays/table of tables)
 Row = a single array in the chessboard (representing the Row of the queen being iterated through specifically)
 
-Function QueenChecker(Row)
+Function QueenChecker(Row, Chessboard)
 	local clear1, clear2
 	For CurrentlySelectedRow = Row, 1, -1 do --This is iterating over the squares in a vertical line above the queen to check for attacks
 		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear1 = false --top vertical check
