@@ -9,20 +9,20 @@ function BoardChecker(Chessboard)
 	if QueenCount == Input then return 1
 	else return 0 end
 end
-function QueenChecker(Row, Chessboard)
+function QueenChecker(ChessBoard, Row, Square)
 	local DiagonalNumber, clear1, clear2 = 1
 	for CurrentlySelectedRow = Row, 1, -1 do
-		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear1 = false
-		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear1 = false
-		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear1 = false
+		if Chessboard[CurrentlySelectedRow][Square] == "Q" then clear1 = false; break
+		elseif Chessboard[CurrentlySelectedRow][Square+DiagonalNumber] == "Q" then clear1 = false; break
+		elseif Chessboard[CurrentlySelectedRow][Square-DiagonalNumber] == "Q" then clear1 = false; break
 		else clear1 = true end 
 		DiagonalNumber = DiagonalNumber+1
 	end
 	DiagonalNumber = 1
 	for CurrentlySelectedRow = Row, #Chessboard, 1 do
-		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear2 = false
-		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear2 = false
-		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear2 = false
+		if Chessboard[CurrentlySelectedRow][Square] == "Q" then clear2 = false; break
+		elseif Chessboard[CurrentlySelectedRow][Square+DiagonalNumber] == "Q" then clear2 = false; break
+		elseif Chessboard[CurrentlySelectedRow][Square-DiagonalNumber] == "Q" then clear2 = false; break
 		else clear2 = true end
 		DiagonalNumber = DiagonalNumber+1
 	end
@@ -56,7 +56,7 @@ function chessboardbuilder(input)
 	return PosIterator(wholeboard,input)
 end
 function PosIterator(Chessboard,Input)
-	local count, retvalue, solutionsnumber = 0, 0, 0
+	local count, retvalue, solutionsnumber, Row, Squares = 0, 0, 0
 	repeat
 		for _, Row in ipairs(Chessboard) do
 			retvalue = retvalue + BoardChecker(Chessboard)
@@ -64,6 +64,7 @@ function PosIterator(Chessboard,Input)
 			else break end
 		end
 		for positionInt, Squares in ipairs(Chessboard[count+1]) do
+			QueenChecker(Row, Chessboard,)
 			if Squares == "Q" then Chessboard[count+1][positionInt] = Chessboard[count+1][positionInt+1]; break end
 		end
 	until true == AllQueensIterated(Chessboard,Input)
