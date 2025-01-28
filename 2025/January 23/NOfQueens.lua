@@ -2,6 +2,14 @@ function queencounter(queenpos)
 	for _, num1 in ipairs(queenpos) do if num1 ~= #queenpos then return false end end
 	return true
 end
+function AllQueensIterated(Chessboard,Input)
+	local count = 0
+	for unusedIntVariable, Row in ipairs(Chessboard) do
+		if Row[Input] == "Q" then count = count+1 end
+	end
+	if count == Input then return true
+	else return false end
+end
 function table.replace(tab, originalLocation, replacement)
 	table.remove(tab, originalLocation); table.insert(tab, originalLocation, replacement)
 	return tab
