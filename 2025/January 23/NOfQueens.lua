@@ -3,33 +3,35 @@ function queencounter(queenpos)
 	return true
 end
 function BoardChecker(Chessboard)
-	for unusedIntVariable, Row in ipairs(Chessboard) do
+	for _, Row in ipairs(Chessboard) do
 		if QueenChecker(Row) == true then QueenCount+1 end
 	end
 	if QueenCount == Input then return 1
 	else return 0 end
 end
 function QueenChecker(Row, Chessboard)
-	local clear1, clear2
+	local DiagonalNumber, clear1, clear2 = 1
 	for CurrentlySelectedRow = Row, 1, -1 do
 		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear1 = false
 		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear1 = false
 		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear1 = false
 		else clear1 = true end 
+		DiagonalNumber = DiagonalNumber+1
 	end
-
+	DiagonalNumber = 1
 	for CurrentlySelectedRow = Row, #Chessboard, 1 do
 		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear2 = false
 		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear2 = false
 		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear2 = false
 		else clear2 = true end
+		DiagonalNumber = DiagonalNumber+1
 	end
 	if clear1 and clear2 then return true 
 	else return false end
 end
 function AllQueensIterated(Chessboard,Input)
 	local count = 0
-	for unusedIntVariable, Row in ipairs(Chessboard) do
+	for _, Row in ipairs(Chessboard) do
 		if Row[Input] == "Q" then count = count+1 end
 	end
 	if count == Input then return true
@@ -56,7 +58,7 @@ end
 function PosIterator(Chessboard,Input)
 	local count, retvalue, solutionsnumber = 0, 0, 0
 	repeat
-		for unusedIntVariable, Row in ipairs(Chessboard) do
+		for _, Row in ipairs(Chessboard) do
 			retvalue = retvalue + BoardChecker(Chessboard)
 			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
 			else break end
