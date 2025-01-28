@@ -72,7 +72,7 @@ QueenCount = How many queens are solved. If QueenCount == Input then it is a sol
 
 Function BoardChecker(Chessboard)
 	For unusedIntVariable, Row in ipairs(Chessboard) do
-		if QueenChecker(Row) == clear then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
+		if QueenChecker(Row) == true then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
 	end
 	if QueenCount == Input then return 1
 	else return 0 end

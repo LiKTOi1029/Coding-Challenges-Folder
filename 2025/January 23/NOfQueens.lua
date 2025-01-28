@@ -2,12 +2,30 @@ function queencounter(queenpos)
 	for _, num1 in ipairs(queenpos) do if num1 ~= #queenpos then return false end end
 	return true
 end
-Function BoardChecker(Chessboard)
+function BoardChecker(Chessboard)
 	For unusedIntVariable, Row in ipairs(Chessboard) do
 		if QueenChecker(Row) == true then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
 	end
 	if QueenCount == Input then return 1
 	else return 0 end
+end
+function QueenChecker(Row, Chessboard)
+	local clear1, clear2
+	for CurrentlySelectedRow = Row, 1, -1 do --This is iterating over the squares in a vertical line above the queen to check for attacks
+		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear1 = false --top vertical check
+		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear1 = false--QP to top right diagional check
+		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear1 = false --QP to top left diagonal check
+		else clear1 = true end --This is NOT the end of the script simply affirming that it found only one queen in the area it checked
+	end
+
+	for CurrentlySelectedRow = Row, #Chessboard, 1 do --This is iterating over the squares in a vertical line below the queen to check for attacks
+		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear2 = false --bottom vertical check
+		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear2 = false --QP to bottom right diagional check
+		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear2 = false --QP to bottom left diagonal check
+		else clear2 = true end --This is NOT the end of the script simply affirming that it found only one queen in the area it checked
+	end
+	if clear1 and clear2 then return true 
+	else return false end
 end
 function AllQueensIterated(Chessboard,Input)
 	local count = 0
