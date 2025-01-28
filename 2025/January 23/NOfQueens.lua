@@ -2,6 +2,13 @@ function queencounter(queenpos)
 	for _, num1 in ipairs(queenpos) do if num1 ~= #queenpos then return false end end
 	return true
 end
+Function BoardChecker(Chessboard)
+	For unusedIntVariable, Row in ipairs(Chessboard) do
+		if QueenChecker(Row) == true then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
+	end
+	if QueenCount == Input then return 1
+	else return 0 end
+end
 function AllQueensIterated(Chessboard,Input)
 	local count = 0
 	for unusedIntVariable, Row in ipairs(Chessboard) do
