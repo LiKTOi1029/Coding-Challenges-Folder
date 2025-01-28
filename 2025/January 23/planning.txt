@@ -96,6 +96,10 @@ Function PosIterator(Chessboard,Input)
 	return retValue
 end
 
+The next function is to iterate over every queen on the board to see if they have all reached their
+final position. In other words, if all possible combinations have been checked and all that's left
+is to return their result.
+
 function AllQueensIterated(Chessboard,Input)
 	local count = 0
 	for unusedIntVariable, Row in ipairs(Chessboard) do
@@ -104,3 +108,6 @@ function AllQueensIterated(Chessboard,Input)
 	if count == Input then return true
 	else return false end
 end
+
+There are definitely much better algorithms out there, but I don't want to be at this for ages so
+I'll just do this amount and do the rest later.
