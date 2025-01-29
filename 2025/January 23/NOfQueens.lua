@@ -47,7 +47,7 @@ function table.replace(tab, originalLocation, replacement)
 	table.remove(tab, originalLocation); table.insert(tab, originalLocation, replacement)
 	return tab
 end
-function chessboardbuilder(input)
+function ChessboardBuilder(input)
 	local wholeboard = {}
 	for num1 = 1, input, 1 do
 		local newtable = {}
@@ -81,7 +81,7 @@ repeat
 	io.write("Please input an integer! Input EXIT to exit the script\n")
 	local choice = io.read("*l"):gsub("\n","")
 	if choice ~= "EXIT" and (choice:find("%a+") or not choice:find("%d")) then io.write("Please input a valid number\n")
-	elseif choice ~= "EXIT" and not choice:find("%a+") then chessboardbuilder(choice) end
+	elseif choice ~= "EXIT" and not choice:find("%a+") then ChessboardBuilder(choice) end
 until choice == "EXIT"
 --[[
 KNOWN BUGS
