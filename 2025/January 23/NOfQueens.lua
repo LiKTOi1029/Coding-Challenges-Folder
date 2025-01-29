@@ -4,17 +4,17 @@ function queencounter(queenpos)
 end
 function QueenFinder(Row)
 	for squarepositionint, Squares in ipairs(Row) do
-		if Squares == "Q" then return squarepositionint end
+		if Squares == "Q" then return squarepositionint end --nil value right here for some reason
 	end
 end
 function BoardChecker(Chessboard)
 	for rowpositionint, Row in ipairs(Chessboard) do
-		if QueenChecker(Chessboard, rowpositionint, QueenFinder(Row)) == true then QueenCount+1 end
+		if QueenChecker(Chessboard, rowpositionint, QueenFinder(Row)) == true then QueenCount=QueenCount+1 end
 	end
 	if QueenCount == Input then return 1
 	else return 0 end
 end
-function QueenChecker(ChessBoard, Row, SquareInt)
+function QueenChecker(Chessboard, Row, SquareInt)
 	local DiagonalNumber, clear1, clear2 = 1
 	for CurrentlySelectedRow = Row, 1, -1 do
 		if Chessboard[CurrentlySelectedRow][SquareInt] == "Q" then clear1 = false; break
