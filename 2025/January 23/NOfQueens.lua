@@ -2,14 +2,14 @@ function queencounter(queenpos)
 	for _, num1 in ipairs(queenpos) do if num1 ~= #queenpos then return false end end
 	return true
 end
-function QueenFinder(Row)
-	for squarepositionint, Squares in ipairs(Row) do
-		if Squares == "Q" then return squarepositionint end --nil value right here for some reason
-	end
-end
 function BoardChecker(Chessboard)
+	local Row, squarepositionint
 	for rowpositionint, Row in ipairs(Chessboard) do
-		if QueenChecker(Chessboard, rowpositionint, QueenFinder(Row)) == true then QueenCount=QueenCount+1 end
+		for squareint, Squares in ipairs(Row) do
+			print(tostring(squareint).." Debug 3")
+			if Squares == "Q" then squarepositionint = squareint end
+			if QueenChecker(Chessboard, rowpositionint, squarepositionint) == true then QueenCount=QueenCount+1 end
+		end
 	end
 	if QueenCount == Input then return 1
 	else return 0 end
@@ -17,6 +17,7 @@ end
 function QueenChecker(Chessboard, Row, SquareInt)
 	local DiagonalNumber, clear1, clear2 = 1
 	for CurrentlySelectedRow = Row, 1, -1 do
+		print(tostring(SquareInt).." "..tostring(Row).." "..tostring(Chessboard).." Debug 4")
 		if Chessboard[CurrentlySelectedRow][SquareInt] == "Q" then clear1 = false; break
 		elseif Chessboard[CurrentlySelectedRow][SquareInt+DiagonalNumber] == "Q" then clear1 = false; break
 		elseif Chessboard[CurrentlySelectedRow][SquareInt-DiagonalNumber] == "Q" then clear1 = false; break
@@ -61,9 +62,11 @@ function chessboardbuilder(input)
 	return PosIterator(wholeboard,input)
 end
 function PosIterator(Chessboard,Input)
+	print(tostring(Chessboard).." "..tostring(Input).." Debug 1")
 	local count, retvalue, solutionsnumber, Squares, Row = 0, 0, 0
 	repeat
 		for rowpositionint, Row in ipairs(Chessboard) do
+			print(tostring(rowpositionint).." Debug 2")
 			retvalue = retvalue + BoardChecker(Chessboard, rowpositionint)
 			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
 			else break end
@@ -80,3 +83,8 @@ repeat
 	if choice ~= "EXIT" and (choice:find("%a+") or not choice:find("%d")) then io.write("Please input a valid number\n")
 	elseif choice ~= "EXIT" and not choice:find("%a+") then chessboardbuilder(choice) end
 until choice == "EXIT"
+--[[
+KNOWN BUGS
+1. The SquareInt variable in QueenChecker() keeps passing nil after NxN iterations have passed. I believe I know where the problem of the script may lie (PosIterator()) however more testing is required
+2. 1 returns an endless loop of 1 without ending. I believe the script is halting somewhere in one of the resursions.
+--]]
