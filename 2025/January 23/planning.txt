@@ -1,0 +1,113 @@
+planning:
+
+How the nofqueens algorithm will work is this:
+
+QXX
+QXX
+QXX
+
+this is the starting position and it will iterate over the top row over and over. Adding one to the next row below
+that hasn't been iterated all the way through until all queens reach the end of iteration and it returns the number
+of iterations that took
+
+ 1   2   3   4   5   6   7   8   9  10  11  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26
+QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ QXX XQX XXQ
+QXX QXX QXX XQX XQX XQX XXQ XXQ XXQ QXX QXX QXX XQX XQX XQX XXQ XXQ XXQ QXX QXX QXX XQX XQX XQX XXQ XXQ XXQ
+QXX QXX QXX QXX QXX QXX QXX QXX QXX XQX XQX XQX XQX XQX XQX XQX XQX XQX XXQ XXQ XXQ XXQ XXQ XXQ XXQ XXQ XXQ
+
+That is the end of the script. In theory this should iterate over every single possibility for every single N
+there is. Therefore, the scope and domain thus should be all real numbers excluding decimal points of course
+because we can't have 1.5 solutions or 3.8 queens or a 6.6 by 6.6 chessboard. It must be a whole, rounded number.
+by the end of this algorithm it will return the number of solutions where no queen was being attacked/attacking
+another queen.
+
+So really right now the goal is to get the script to iterate over every single queen and then we can work on
+the function to check if any queen is attacking any other queen. The algorith I initially came up with and will use
+is this:
+
+ADDITONAL NOTES:
+
+This is the algorithm to check if the currently selected queen is attacking or being attacked by any other queen
+These are the variables used. I will not rewrite their definitions unless I add new variables. Be sure to remember them
+
+QP = Queen's Position on the array
+VerticalAxis = Two connected vertical lines going up and down from QP
+DiagonalNumber = A number that increases by 1 in every single iteration of a loop. By default starts at 1
+Chessboard = The entire chessboard. Separated into individual arrays/rows (array of arrays/table of tables)
+Row = a single array in the chessboard (representing the Row of the queen being iterated through specifically)
+
+Function QueenChecker(Row, Chessboard)
+	local clear1, clear2
+	For CurrentlySelectedRow = Row, 1, -1 do --This is iterating over the squares in a vertical line above the queen to check for attacks
+		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear1 = false --top vertical check
+		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear1 = false--QP to top right diagional check
+		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear1 = false --QP to top left diagonal check
+		else clear1 = true end --This is NOT the end of the script simply affirming that it found only one queen in the area it checked
+	end
+
+	For CurrentlySelectedRow = Row, #Chessboard, 1 do --This is iterating over the squares in a vertical line below the queen to check for attacks
+		if Chessboard[CurrentlySelectedRow][QP] == "Q" then clear2 = false --bottom vertical check
+		elseif Chessboard[CurrentlySelectedRow][QP+DiagonalNumber] == "Q" then clear2 = false --QP to bottom right diagional check
+		elseif Chessboard[CurrentlySelectedRow][QP-DiagonalNumber] == "Q" then clear2 = false --QP to bottom left diagonal check
+		else clear2 = true end --This is NOT the end of the script simply affirming that it found only one queen in the area it checked
+	end
+	if clear1 and clear2 then return true 
+	else return false end
+end
+
+This systematic and individual iteration of each queen one by one is quite a simple algorithm. Now, we just have to
+design an iterater that iterates over every single array of the chessboard, iterating over every queen with this function
+one by one. So really, we're looking at an iterater function taking in another iterater function as its input.
+Iteraterception amirite?
+
+The resulting output of this iteraterception should be 1 or 0. If it is NOT a valid solution then 0 if it IS a valid 
+solution then it returns 1. In either case it is going to add its result (1 or 0) to a variable. Probably something
+like "count" to remember how many solutions there are and at the end of the script returns the solution. Now,
+let's psuedocode the iteratorfunction for iterating over every single row and then doing this function on the one
+queen in that row.
+
+Input = This is the inputted N. if all N queens are solved (not being attacked/attacking) then it is a solved position
+Row = In this specifically it is just the currently selected row on the Chessboard table/array
+QueenCount = How many queens are solved. If QueenCount == Input then it is a solved position
+
+Function BoardChecker(Chessboard)
+	For unusedIntVariable, Row in ipairs(Chessboard) do
+		if QueenChecker(Row) == true then QueenCount+1 end --if the conditional doesn't fire then that means it will continue without adding anything to QueenCount
+	end
+	if QueenCount == Input then return 1
+	else return 0 end
+end
+
+This next function will be for iterating over every single position on the board. This should actually be pretty 
+easy to implement all things considered.
+
+Function PosIterator(Chessboard,Input)
+	local count, retvalue, solutionsnumber = 0, 0, 0
+	repeat
+		for unusedIntVariable, Row in ipairs(Chessboard) do
+			retvalue = retvalue + BoardChecker(Chessboard)
+			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
+			else break end
+		end
+		for positionInt, Squares in ipairs(Chessboard[count+1]) do
+			if Squares == "Q" then Chessboard[count+1][positionInt] = Chessboard[count+1][positionInt+1]; break end
+		end
+	until true == AllQueensIterated(Chessboard,Input)
+	return retValue
+end
+
+The next function is to iterate over every queen on the board to see if they have all reached their
+final position. In other words, if all possible combinations have been checked and all that's left
+is to return their result.
+
+function AllQueensIterated(Chessboard,Input)
+	local count = 0
+	for unusedIntVariable, Row in ipairs(Chessboard) do
+		if Row[Input] == "Q" then count = count+1 end
+	end
+	if count == Input then return true
+	else return false end
+end
+
+There are definitely much better algorithms out there, but I don't want to be at this for ages so
+I'll just do this amount and do the rest later.
