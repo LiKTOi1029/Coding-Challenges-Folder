@@ -87,4 +87,6 @@ until choice == "EXIT"
 KNOWN BUGS
 1. The SquareInt variable in QueenChecker() keeps passing nil after NxN iterations have passed. I believe I know where the problem of the script may lie (PosIterator()) however more testing is required
 2. 1 returns an endless loop of 1 without ending. I believe the script is halting somewhere in one of the resursions.
+THINGS I WOULD PREFER TO CHANGE IN THE FUTURE
+1. I would like to hopefully make the script slightly shorter so that I don't need to wait too long for all the recursions to finish. I'll have to come up with something to cut down on all these loops for sure.
 --]]
