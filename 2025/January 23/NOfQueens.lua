@@ -2,9 +2,14 @@ function queencounter(queenpos)
 	for _, num1 in ipairs(queenpos) do if num1 ~= #queenpos then return false end end
 	return true
 end
+function QueenFinder(Row)
+	for squarepositionint, Squares in ipairs(Row) do
+		if Squares == "Q" then return squarepositionint end
+	end
+end
 function BoardChecker(Chessboard)
-	for _, Row in ipairs(Chessboard) do
-		if QueenChecker(Row) == true then QueenCount+1 end
+	for rowpositionint, Row in ipairs(Chessboard) do
+		if QueenChecker(Chessboard, rowpositionint, QueenFinder(Row)) == true then QueenCount+1 end
 	end
 	if QueenCount == Input then return 1
 	else return 0 end
@@ -56,16 +61,15 @@ function chessboardbuilder(input)
 	return PosIterator(wholeboard,input)
 end
 function PosIterator(Chessboard,Input)
-	local count, retvalue, solutionsnumber, Row, Squares = 0, 0, 0
+	local count, retvalue, solutionsnumber, Squares, Row = 0, 0, 0
 	repeat
-		for _, Row in ipairs(Chessboard) do
-			retvalue = retvalue + BoardChecker(Chessboard)
+		for rowpositionint, Row in ipairs(Chessboard) do
+			retvalue = retvalue + BoardChecker(Chessboard, rowpositionint)
 			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
 			else break end
 		end
-		for positionInt, Squares in ipairs(Chessboard[count+1]) do
-			QueenChecker(Row, Chessboard, positionInt)
-			if Squares == "Q" then Chessboard[count+1][positionInt] = Chessboard[count+1][positionInt+1]; break end
+		for squarepositionInt, Squares in ipairs(Chessboard[count+1]) do
+			if Squares == "Q" then Chessboard[count+1][squarepositionInt] = Chessboard[count+1][squarepositionInt+1]; break end
 		end
 	until true == AllQueensIterated(Chessboard,Input)
 	return retValue
