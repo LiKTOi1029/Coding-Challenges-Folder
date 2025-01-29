@@ -9,20 +9,20 @@ function BoardChecker(Chessboard)
 	if QueenCount == Input then return 1
 	else return 0 end
 end
-function QueenChecker(ChessBoard, Row, Square)
+function QueenChecker(ChessBoard, Row, SquareInt)
 	local DiagonalNumber, clear1, clear2 = 1
 	for CurrentlySelectedRow = Row, 1, -1 do
-		if Chessboard[CurrentlySelectedRow][Square] == "Q" then clear1 = false; break
-		elseif Chessboard[CurrentlySelectedRow][Square+DiagonalNumber] == "Q" then clear1 = false; break
-		elseif Chessboard[CurrentlySelectedRow][Square-DiagonalNumber] == "Q" then clear1 = false; break
+		if Chessboard[CurrentlySelectedRow][SquareInt] == "Q" then clear1 = false; break
+		elseif Chessboard[CurrentlySelectedRow][SquareInt+DiagonalNumber] == "Q" then clear1 = false; break
+		elseif Chessboard[CurrentlySelectedRow][SquareInt-DiagonalNumber] == "Q" then clear1 = false; break
 		else clear1 = true end 
 		DiagonalNumber = DiagonalNumber+1
 	end
 	DiagonalNumber = 1
 	for CurrentlySelectedRow = Row, #Chessboard, 1 do
-		if Chessboard[CurrentlySelectedRow][Square] == "Q" then clear2 = false; break
-		elseif Chessboard[CurrentlySelectedRow][Square+DiagonalNumber] == "Q" then clear2 = false; break
-		elseif Chessboard[CurrentlySelectedRow][Square-DiagonalNumber] == "Q" then clear2 = false; break
+		if Chessboard[CurrentlySelectedRow][SquareInt] == "Q" then clear2 = false; break
+		elseif Chessboard[CurrentlySelectedRow][SquareInt+DiagonalNumber] == "Q" then clear2 = false; break
+		elseif Chessboard[CurrentlySelectedRow][SquareInt-DiagonalNumber] == "Q" then clear2 = false; break
 		else clear2 = true end
 		DiagonalNumber = DiagonalNumber+1
 	end
