@@ -64,7 +64,7 @@ function PosIterator(Chessboard,Input)
 			else break end
 		end
 		for positionInt, Squares in ipairs(Chessboard[count+1]) do
-			QueenChecker(Row, Chessboard,)
+			QueenChecker(Row, Chessboard, positionInt)
 			if Squares == "Q" then Chessboard[count+1][positionInt] = Chessboard[count+1][positionInt+1]; break end
 		end
 	until true == AllQueensIterated(Chessboard,Input)
