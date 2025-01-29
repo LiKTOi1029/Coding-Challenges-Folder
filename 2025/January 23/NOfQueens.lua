@@ -47,20 +47,6 @@ function table.replace(tab, originalLocation, replacement)
 	table.remove(tab, originalLocation); table.insert(tab, originalLocation, replacement)
 	return tab
 end
-function ChessboardBuilder(input)
-	local wholeboard = {}
-	for num1 = 1, input, 1 do
-		local newtable = {}
-		for num2 = 1, input, 1 do
-			if num2 == 1 then table.insert(newtable, "Q")
-			else table.insert(newtable, "X") end
-			io.write(newtable[num2])
-		end
-		io.write("\n")
-		wholeboard[num1] = newtable
-	end
-	return PosIterator(wholeboard,input)
-end
 function PosIterator(Chessboard,Input)
 	print(tostring(Chessboard).." "..tostring(Input).." Debug 1")
 	local count, retvalue, solutionsnumber, Squares, Row = 0, 0, 0
@@ -76,6 +62,20 @@ function PosIterator(Chessboard,Input)
 		end
 	until true == AllQueensIterated(Chessboard,Input)
 	return retValue
+end
+function ChessboardBuilder(input)
+	local wholeboard = {}
+	for num1 = 1, input, 1 do
+		local newtable = {}
+		for num2 = 1, input, 1 do
+			if num2 == 1 then table.insert(newtable, "Q")
+			else table.insert(newtable, "X") end
+			io.write(newtable[num2])
+		end
+		io.write("\n")
+		wholeboard[num1] = newtable
+	end
+	return PosIterator(wholeboard,input)
 end
 repeat
 	io.write("Please input an integer! Input EXIT to exit the script\n")
