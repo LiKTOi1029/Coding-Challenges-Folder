@@ -59,7 +59,9 @@ function PosIterator(Chessboard,Input)
 		end
 		for squarepositionInt, Squares in ipairs(Chessboard[count+1]) do
 			if Squares == "Q" then Chessboard[count+1][squarepositionInt] = Chessboard[count+1][squarepositionInt+1]; break end
+			io.write(Squares)
 		end
+		io.write("\n")
 	until true == AllQueensIterated(Chessboard,Input)
 	return retValue
 end
