@@ -3,7 +3,7 @@ function TrinaryEncoder(ASCII)
 	repeat
 		if not IndiceDivision and not IndiceMod then IndiceDivision, IndiceMod = math.floor(ASCII/3), ASCII%3 end
 		IndiceDivision = math.floor(IndiceDivision/3); IndiceModNew = IndiceDivision%3; ASCIIResult = IndiceDivision
-		table.insert(EncoderTable, #EncoderTable+1, IndiceModNew)
+		table.insert(EncoderTable, 1, IndiceModNew)
 	until ASCIIResult = 0
 	local result = table.concat(EncoderTable)
 	return result
@@ -14,7 +14,7 @@ function Tabler(Input)
 	if Input:find("%a+") and EncryptDecryptTypeBoolean then TextTypeBoolean = true; break elseif Input:find("[012]") and EncryptDecryptTypeBoolean then TextTypeBoolean = false end
 	if TextTypeBoolean then
 		for num1 = 1, #Input, 1 do
-			local Indice = string.byte(Input, num1); local result = TrinaryEncoder(Indice)
+			local Indice = string.byte(Input, num1); table.insert(ConversionTable, TrinaryEncoder(Indice))
 		end
 	end
 end
