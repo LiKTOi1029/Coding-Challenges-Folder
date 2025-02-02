@@ -4,7 +4,7 @@ function Tabler(Input)
 	if Input:find("%a+") and EncryptDecryptTypeBoolean then TextTypeBoolean = true; break elseif Input:find("[012]") and EncryptDecryptTypeBoolean then TextTypeBoolean = false end
 	if TextTypeBoolean then
 		for num1 = 1, #Input, 1 do
-			
+			local indice = Input:sub(num1,num1)
 			
 			
 		end
