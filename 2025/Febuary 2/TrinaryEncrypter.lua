@@ -16,6 +16,7 @@ function Tabler(Input)
 		for num1 = 1, #Input, 1 do
 			local Indice = string.byte(Input, num1); table.insert(ConversionTable, TrinaryEncoder(Indice))
 		end
+		return table.concat(ConversionTable, " ")
 	end
 end
 repeat 

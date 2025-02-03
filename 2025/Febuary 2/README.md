@@ -1,5 +1,7 @@
 # Trinary Encrypter
 
+**DISCLAIMER: THIS IS NOT EVEN CLOSE TO FINISHED MANY FEATURES DO NOT WORK**\
+\
 The Trinary Encrypter is an encrypter that encrypts plain english into ascii values and then converts the ascii values into trinary values before then using an algorithm (using a special key system) to jumble up the numbers to confuse the reader.\
 \
 Trinary is a Base 3 number system (0, 1, 2) that I initially discovered through the esoteric language Malbolge\
