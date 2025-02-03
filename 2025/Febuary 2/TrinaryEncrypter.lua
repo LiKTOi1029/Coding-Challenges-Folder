@@ -1,7 +1,7 @@
 function TrinaryEncoder(ASCII)
 	local EncoderTable, IndiceMod = {}, ASCII%3
 	table.insert(EncoderTable, 1, IndiceMod)
-	print("[INITIAL]: These are the ascii values outputted "..ASCII.." "..ASCII.." "..IndiceMod)
+	print("[INITIAL]: These are the ascii values outputted "..ASCII.." "..IndiceMod)
 	repeat
 		ASCII = math.floor(ASCII/3); IndiceModNew = ASCII%3
 		if ASCII > 0 then table.insert(EncoderTable, 1, IndiceModNew) end
