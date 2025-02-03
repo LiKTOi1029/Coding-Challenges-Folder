@@ -7,12 +7,11 @@ function TrinaryEncoder(ASCII)
 		if ASCII > 0 then table.insert(EncoderTable, 1, IndiceModNew) end
 		print("[UNTIL ASCII 0]: These are the ascii values outputted "..ASCII.." "..IndiceModNew)
 	until ASCII == 0
-	local result = table.concat(EncoderTable)
-	return result
+	local Result = table.concat(EncoderTable)
+	return Result
 end
 function TrinaryDecoder(Trinary)
 	local DecoderTable = {}
-	string.find()
 end
 function Tabler(Input)
 	local ConversionTable, EncryptDecryptTypeBoolean, TextTypeBoolen, InFile, OutFile = {}
@@ -24,9 +23,11 @@ function Tabler(Input)
 		end
 		return table.concat(ConversionTable, " ")
 	elseif not TextTypeBoolean then
-		for num1 = 1, #input, 1 do
-			local Indice = input:find("%d+")
-			print(Indice)
+		local ParserString = ""
+		for num2 = 1, #Input, 1 do
+			local Indice = Input:sub(num2,num2)
+			if Indice ~= " " then ParserString = ParserString..Indice elseif Indice == " " then table.insert(ConversionTable, TrinaryDecoder(ParserString)); ParserString = "" end
+			print(ParserString)
 		end
 	end
 end
