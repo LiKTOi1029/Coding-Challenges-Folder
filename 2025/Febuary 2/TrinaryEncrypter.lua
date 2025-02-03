@@ -3,9 +3,9 @@ function TrinaryEncoder(ASCII)
 	table.insert(EncoderTable, 1, IndiceMod)
 	print("[INITIAL]: These are the ascii values outputted "..ASCII.." "..IndiceMod)
 	repeat
-		ASCII = math.floor(ASCII/3); IndiceModNew = ASCII%3
-		if ASCII > 0 then table.insert(EncoderTable, 1, IndiceModNew) end
-		print("[UNTIL ASCII 0]: These are the ascii values outputted "..ASCII.." "..IndiceModNew)
+		ASCII = math.floor(ASCII/3); IndiceMod = ASCII%3
+		if ASCII > 0 then table.insert(EncoderTable, 1, IndiceMod) end
+		print("[UNTIL ASCII 0]: These are the ascii values outputted "..ASCII.." "..IndiceMod)
 	until ASCII == 0
 	local Result = table.concat(EncoderTable)
 	return Result
