@@ -12,6 +12,7 @@ function TrinaryEncoder(ASCII)
 end
 function TrinaryDecoder(Trinary)
 	local DecoderTable = {}
+	-- The algorithm to calculate Trinary to ASCII -> DIGIT * 3^DIGITPOS = ASCII
 end
 function Tabler(Input)
 	local ConversionTable, EncryptDecryptTypeBoolean, TextTypeBoolen, InFile, OutFile = {}
