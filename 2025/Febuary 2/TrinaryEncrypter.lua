@@ -1,7 +1,7 @@
 function TrinaryEncoder(ASCII)
-	local EncoderTable, ASCIIResult, IndiceDivision, IndiceMod = {}
+	local EncoderTable, IndiceDivision, IndiceMod, ASCIIResult = {}, math.floor(ASCII/3), ASCII%3
+	table.insert(EncoderTable, 1, IndiceMod)
 	repeat
-		if not IndiceDivision and not IndiceMod then IndiceDivision, IndiceMod = math.floor(ASCII/3), ASCII%3 end
 		IndiceDivision = math.floor(IndiceDivision/3); IndiceModNew = IndiceDivision%3; ASCIIResult = IndiceDivision
 		table.insert(EncoderTable, 1, IndiceModNew)
 	until ASCIIResult == 0
@@ -21,5 +21,5 @@ end
 repeat 
 	io.write("ENCRYPT to encrypt, DECRYPT to decrypt, EXIT to exit.\n")
 	local choice = io.read("*l"):gsub("\n", "")
-	if choice ~= "EXIT" then Tabler(choice) end
+	if choice ~= "EXIT" then print(Tabler(choice)) end
 until choice == "EXIT"
