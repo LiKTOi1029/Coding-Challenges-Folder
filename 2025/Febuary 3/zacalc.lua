@@ -11,7 +11,7 @@ function Calculator(Input)
 	return result
 end
 repeat
-	io.write("Input in the following order: DAMAGE AMMUNITION RPS PIERCE <DAMAGE SECOND>\n\"<\" and \">\" means these values are optional\n")
+	io.write("Input in the following order: DAMAGE AMMUNITION RPS PIERCE (and optionally) DAMAGE SECOND\nEXIT to exit\n")
 	local choice = io.read("*l"):gsub("\n","")
 	if choice ~= "EXIT" then print(Calculator(choice)) end
 until choice == "EXIT"
