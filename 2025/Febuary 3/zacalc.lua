@@ -4,11 +4,11 @@ function Calculator(Input)
 		ParserString = ParserString..Input:sub(num1,num1)
 		if Input:sub(num1,num1) == " " or num1 == Input:len() then ParserString:gsub(" ", "") table.insert(CalculationTable, ParserString); ParserString = "" end
 	end
-	if CalculationTable[6] then Result = (CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4])+(math.floor(CalculationTable[5]/CalculationTable[6])) else Result = CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4] end
+	if CalculationTable[6] then Result = (CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4])+(CalculationTable[5]/CalculationTable[6]) else Result = CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4] end
 	return Result
 end
 repeat
 	io.write("Input in the following order: DAMAGE AMMUNITION RPS PIERCE (and optionally) DAMAGE SECOND\nEXIT to exit\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if choice ~= "EXIT" then print(Calculator(choice)) end
+	if choice:find("%D+") and choice ~= "EXIT" then io.write("Input a valid number\n"); elseif choice ~= "EXIT" and choice:find("%d+") then print(Calculator(choice)) else io.write("Input a valid number\n") end
 until choice == "EXIT"

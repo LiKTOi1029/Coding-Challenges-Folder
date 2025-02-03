@@ -9,6 +9,8 @@ You input the damage, ammunition, rps, pierce, and optionally the damage/second 
 `35` is the ammunition\
 `15` is the rps\
 `2` is the pierce\
-`115 2` is the damage and per second. Only use this if your weapon applies the acidic or burning effect on zombies\
+`115 2` is the damage (`155`) per second (`2`). Only use this if your weapon applies the acidic or burning effect on zombies\
+\
+output: ``
 \
 I only really use this for personal use, however you are free to use it if you'd like.
