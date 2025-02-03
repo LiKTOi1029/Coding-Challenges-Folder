@@ -1,14 +1,11 @@
 function Calculator(Input)
-	local ParserString, CalculationTable = "", {}
+	local ParserString, CalculationTable, Result = "", {}
 	for num1 = 1, #Input, 1 do
 		ParserString = ParserString..Input:sub(num1,num1)
 		if Input:sub(num1,num1) == " " or num1 == Input:len() then ParserString:gsub(" ", "") table.insert(CalculationTable, ParserString); ParserString = "" end
-		print(ParserString.." "..#CalculationTable)
 	end
-	for num2, value in ipairs(CalculationTable) do io.write(value.." ") end
-	local result = CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4]
-	if CalculationTable[6] then result = result+(math.floor(CalculationTable[4]/CalculationTable[5])) end
-	return result
+	if CalculationTable[6] then Result = (CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4])+(math.floor(CalculationTable[5]/CalculationTable[6])) else Result = CalculationTable[1]*(CalculationTable[2]/CalculationTable[3])*CalculationTable[4] end
+	return Result
 end
 repeat
 	io.write("Input in the following order: DAMAGE AMMUNITION RPS PIERCE (and optionally) DAMAGE SECOND\nEXIT to exit\n")
