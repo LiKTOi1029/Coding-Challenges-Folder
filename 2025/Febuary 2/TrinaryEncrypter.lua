@@ -9,13 +9,13 @@ function TrinaryEncoder(ASCII)
 	return Result
 end
 function TrinaryDecoder(Trinary)
-	local DecoderTable, TrinaryFormula = {}
-	for num3 = Trinary:len(), 1, -1 do
-		TrinaryFormula = Trinary:sub(num3,num3)*(3^(num3-1))
-		table.insert(DecoderTable, TrinaryFormula)
+	local Result, Count, Trinary, TrinaryFormula = 0, 0, Trinary:reverse():gsub(" ","")
+	print("Initial: "..Trinary.." "..Trinary:sub(1,1))
+	for num3 = 1, Trinary:len(), 1 do
+		TrinaryFormula = tonumber(Trinary:sub(num3,num3))*(3^Count)
+		Result, Count = TrinaryFormula+Result, Count+1
 	end
-	DecoderTable = tonumber(table.concat(DecoderTable, "+"))
-	return DecoderTable
+	return Result
 end
 function Tabler(Input)
 	local ConversionTable, EncryptDecryptTypeBoolean, TextTypeBoolen, InFile, OutFile = {}
