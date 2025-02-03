@@ -11,8 +11,14 @@ function TrinaryEncoder(ASCII)
 	return Result
 end
 function TrinaryDecoder(Trinary)
-	local DecoderTable = {}
-	-- The algorithm to calculate Trinary to ASCII -> DIGIT * 3^DIGITPOS = ASCII
+	local DecoderTable, TrinaryFormula = {}
+	for num3 = Trinary:len(), 1, -1 do
+		TrinaryFormula = Trinary:sub(num3,num3)*(3^(num3-1))
+		table.insert(DecoderTable, TrinaryFormula)
+	end
+	for num4, _ in ipairs(DecoderTable) do
+		
+	end
 end
 function Tabler(Input)
 	local ConversionTable, EncryptDecryptTypeBoolean, TextTypeBoolen, InFile, OutFile = {}
@@ -26,9 +32,9 @@ function Tabler(Input)
 	elseif not TextTypeBoolean then
 		local ParserString = ""
 		for num2 = 1, #Input, 1 do
-			local Indice = Input:sub(num2,num2)
-			if Indice ~= " " then ParserString = ParserString..Indice elseif Indice == " " then table.insert(ConversionTable, TrinaryDecoder(ParserString)); ParserString = "" end
-			print(ParserString)
+			local Indice, count = Input:sub(num2,num2), 0
+			ParserString = ParserString..Indice
+			if Indice == " " or num2 == Input:len() then table.insert(ConversionTable, TrinaryDecoder(ParserString)); print(TrinaryDecoder(ParserString)); ParserString = ""; end
 		end
 	end
 end
