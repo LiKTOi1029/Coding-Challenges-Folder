@@ -1,12 +1,12 @@
 function TrinaryEncoder(ASCII)
-	local EncoderTable, IndiceDivision, IndiceMod, ASCIIResult = {}, math.floor(ASCII/3), ASCII%3
+	local EncoderTable, IndiceMod = {}, ASCII%3
 	table.insert(EncoderTable, 1, IndiceMod)
-	print("\[INITIAL\]: These are the ascii values outputted "..ASCII.." "..IndiceDivision.." "..IndiceMod)
+	print("\[INITIAL\]: These are the ascii values outputted "..ASCII.." "..ASCII.." "..IndiceMod)
 	repeat
-		IndiceDivision = math.floor(IndiceDivision/3); IndiceModNew = IndiceDivision%3; ASCIIResult = IndiceDivision
-		if IndiceDivision > 0 then table.insert(EncoderTable, 1, IndiceModNew) end
-		print("\[UNTIL ASCII 0\]: These are the ascii values outputted "..IndiceDivision.." "..IndiceModNew)
-	until ASCIIResult == 0
+		ASCII = math.floor(ASCII/3); IndiceModNew = ASCII%3
+		if ASCII > 0 then table.insert(EncoderTable, 1, IndiceModNew) end
+		print("\[UNTIL ASCII 0\]: These are the ascii values outputted "..ASCII.." "..IndiceModNew)
+	until ASCII == 0
 	local result = table.concat(EncoderTable)
 	return result
 end
