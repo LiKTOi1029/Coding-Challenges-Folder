@@ -9,9 +9,8 @@ function TrinaryEncoder(ASCII)
 	return Result
 end
 function TrinaryDecoder(Trinary)
-	local Result, Count, Trinary, TrinaryFormula = 0, 0, Trinary:reverse():gsub(" ","")
-	print("Initial: "..Trinary.." "..Trinary:sub(1,1))
-	for num3 = 1, Trinary:len(), 1 do
+	local Result, Count, Trinary, TrinaryFormula = 0, 0, Trinary:gsub(" ","")
+	for num3 = Trinary:len(), 1, -1 do
 		TrinaryFormula = tonumber(Trinary:sub(num3,num3))*(3^Count)
 		Result, Count = TrinaryFormula+Result, Count+1
 	end
@@ -31,7 +30,7 @@ function Tabler(Input)
 		for num2 = 1, #Input, 1 do
 			local Indice, count = Input:sub(num2,num2), 0
 			ParserString = ParserString..Indice
-			if Indice == " " or num2 == Input:len() then table.insert(ConversionTable, string.char(TrinaryDecoder(ParserString))); print(TrinaryDecoder(ParserString)); ParserString = ""; end
+			if Indice == " " or num2 == Input:len() then table.insert(ConversionTable, string.char(TrinaryDecoder(ParserString))); ParserString = ""; end
 		end
 		return table.concat(ConversionTable, "")
 	end
