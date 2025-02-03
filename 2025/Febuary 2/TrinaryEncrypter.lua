@@ -10,6 +10,9 @@ function TrinaryEncoder(ASCII)
 	local result = table.concat(EncoderTable)
 	return result
 end
+function TrinaryDecoder(Trinary)
+	local DecoderTable = {}
+end
 function Tabler(Input)
 	local ConversionTable, EncryptDecryptTypeBoolean, TextTypeBoolen, InFile, OutFile = {}
 	if Input ~= "ENCRYPT" or Input ~= "DECRYPT" then EncryptDecryptTypeBoolean = true elseif Input == "ENCRYPT" or Input == "DECRYPT" then InFile, OutFile, EncryptDecryptTypeBoolean = io.open("input.txt", "r"), io.open("output.txt", "w+"), false end
@@ -19,6 +22,10 @@ function Tabler(Input)
 			local Indice = string.byte(Input, num1); print("\[TABLER\]: This is the indice from Tabler. "..Indice); table.insert(ConversionTable, TrinaryEncoder(Indice))
 		end
 		return table.concat(ConversionTable, " ")
+	elseif not TextTypeBoolean then
+		for num1 = 1, #input, 1 do
+			local Indice = input:find("")
+		end
 	end
 end
 repeat 
