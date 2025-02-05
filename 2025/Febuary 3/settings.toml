@@ -1,0 +1,14 @@
+# This is the global settings of the calculator.
+# X = off
+# O = on
+# nil = nothing
+
+[GLOBAL_SETTINGS]
+DamagePerMag = "X" # Damage per magazine
+DamagePerMinute = "O" # Damage per minute
+DamagePerSecond = "X" # Damage per second
+AllAtOnce = "O" # Input all numbers at once or one by one?
+FileUsage = "X" # Use .toml files for gun input?
+Logging = "O" # Record logs of results?
+DefaultIn = "nil" # Default input file. Please keep all files in the same directory as the script
+DefaultOut = "nil" # Default output file. Please keep all the files in the same directory as the script
