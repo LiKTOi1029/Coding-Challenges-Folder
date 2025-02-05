@@ -4,11 +4,11 @@
 # nil = nothing
 
 [GLOBAL_SETTINGS]
-DamagePerMag = "X" # Damage per magazine
-DamagePerMinute = "O" # Damage per minute
-DamagePerSecond = "X" # Damage per second
-AllAtOnce = "O" # Input all numbers at once or one by one?
-FileUsage = "X" # Use .toml files for gun input?
-Logging = "O" # Record logs of results?
-DefaultIn = "nil" # Default input file. Please keep all files in the same directory as the script
-DefaultOut = "nil" # Default output file. Please keep all the files in the same directory as the script
+DamagePerMag = false # Damage per magazine
+DamagePerMinute = true# Damage per minute
+DamagePerSecond = false # Damage per second
+AllAtOnce = true # Input all numbers at once or one by one?
+FileUsage = false # Use .toml files for gun input?
+Logging = true # Record logs of results?
+DefaultIn = false # Default input file. Please keep all files in the same directory as the script
+DefaultOut = false # Default output file. Please keep all the files in the same directory as the script
