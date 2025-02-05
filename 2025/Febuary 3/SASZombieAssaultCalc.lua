@@ -4,9 +4,9 @@ DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, D
 function Begin(CalcTable)
 	
 end
-function BeginSetTableFiler()
+--[[function BeginSetTableFiler()
 	
-end
+end--]]
 function BeginSetTableTerminal(choice)
 	local CalcTable, ParserString, damage, ammunition, rps, pierce, projectiles, reloadtime = {}, ""
 	if AllAtOnce == false then
