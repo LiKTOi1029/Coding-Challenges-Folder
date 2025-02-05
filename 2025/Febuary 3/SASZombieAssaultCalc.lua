@@ -1,12 +1,14 @@
+tinytoml = require("tinytoml")
 function SettingsReader()
 	local Settings = tinytoml.parse("settings.toml")
+	print(table.unpack(Settings))
 end
 function Toggler(input)
 	if input == "X" then input = "O" else input = "X" end
 	return input
 end
 function WriteFile()
-	local settingsfile, infile, outfile, result1, result2 = io.open(
+	local infile, outfile, result1, result2
 	while not infile do
 		io.write(">[FILER]: If no file is found it will create one manually\n[FILER]: Please give the name of the input file: ")
 		infile = io.read("*l"):gsub("\n","")
@@ -47,9 +49,9 @@ function BeginSetTableTerminal(choice)
 	end
 end
 repeat
-	io.write("1) Settings\n2)Begin\n3)EXIT\n")
+	io.write("1) Settings\n2) Begin\n3) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if choice == "1" then Settings()
+	if choice == "1" then SettingsReader()
 	elseif choice == "2" and FileUsage == "X" then print(">[OUTPUT]: "..BeginSetTableTerminal(choice)) 
 	elseif choice == "2" and FileUsage == "O" then print(">[OUTPUT]: "..BeginSetTableFiler()) end 
 until choice == "3"
