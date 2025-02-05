@@ -1,14 +1,10 @@
-tinytoml = require("tinytoml")
-function SettingsReader()
-	local Settings = tinytoml.parse("settings.toml")
-	print(table.unpack(Settings))
-end
+tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut = Settings["GLOBAL_SETTINGS"]["DamagePerMag"], Settings["GLOBAL_SETTINGS"]["DamagePerMinute"], Settings["GLOBAL_SETTINGS"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"]
 function Toggler(input)
 	if input == "X" then input = "O" else input = "X" end
 	return input
 end
 function WriteFile()
-	local infile, outfile, result1, result2
+	local infile, outfile = DefaultIn, DefaultOut
 	while not infile do
 		io.write(">[FILER]: If no file is found it will create one manually\n[FILER]: Please give the name of the input file: ")
 		infile = io.read("*l"):gsub("\n","")
@@ -20,8 +16,8 @@ function WriteFile()
 		if outfile == " " or not outfile then print("Please input a valid name"); outfile = nil end
 	end
 	result1, result2 = io.open(infile..".toml", "r"), io.open(outfile..".toml", "r")
-	if not result1 and not result2 then result1, result2 = io.open(infile..".toml", "w"), io.open(outfile..".toml", "w"); result1:close(); result2:close(); elseif result1 and result2 then end
-	print(">[FILER]: Please go to the settings and turn on file usage")
+	if not result1 or not result2 then result1, result2 = io.open(infile..".toml", "w"), io.open(outfile..".toml", "w"); result1:close(); result2:close(); elseif result1 and result2 then end
+	DefaultIn, DefaultOut = result1, result2
 end
 function Begin(CalcTable)
 	
@@ -49,9 +45,9 @@ function BeginSetTableTerminal(choice)
 	end
 end
 repeat
-	io.write("1) Settings\n2) Begin\n3) EXIT\n")
+	if DefaultIn == nil or DefaultOut == nil then WriteFile() end
+	io.write("1) BEGIN\n2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if choice == "1" then SettingsReader()
-	elseif choice == "2" and FileUsage == "X" then print(">[OUTPUT]: "..BeginSetTableTerminal(choice)) 
-	elseif choice == "2" and FileUsage == "O" then print(">[OUTPUT]: "..BeginSetTableFiler()) end 
-until choice == "3"
+	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == "X" then print(">[OUTPUT]: "..BeginSetTableTerminal(choice))
+	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == "O" then print(">[OUTPUT]: "..BeginSetTableFiler()) end 
+until choice == "2" or string.upper(choice) == "EXIT"
