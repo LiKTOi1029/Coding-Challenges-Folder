@@ -1,6 +1,5 @@
-DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging = "X", "O", "X", "O", "X", "O"
 function SettingsReader()
-
+	local Settings = tinytoml.parse("settings.toml")
 end
 function Toggler(input)
 	if input == "X" then input = "O" else input = "X" end
@@ -22,17 +21,6 @@ function WriteFile()
 	if not result1 and not result2 then result1, result2 = io.open(infile..".toml", "w"), io.open(outfile..".toml", "w"); result1:close(); result2:close(); elseif result1 and result2 then end
 	print(">[FILER]: Please go to the settings and turn on file usage")
 end
-function Settings()
-	io.write(">1) DamagePerMag calculation ["..DamagePerMag.."]\n>2) DamagePerMinute calculation ["..DamagePerMinute.."]\n>3) DamagePerSecond calculation ["..DamagePerSecond.."]\n>4) Input values one by one ["..AllAtOnce.."]\n>5) File Usage ["..FileUsage.."]\n>6) Accept and return to menu\n")
-	local choice = io.read("*l"):gsub("\n","")
-	while choice ~= "4" do
-		if choice == "1" then io.write(">DamagePerMag calculation toggle\n"); Toggler(DamagePerMag)
-		elseif choice == "2" then io.write(">DamagePerMinute calculation toggle\n"); Toggler(DamagePerMinute)
-		elseif choice == "3" then io.write(">DamagePerSecond calculation toggle\n"); Toggler(DamagePerSecond)
-		elseif choice == "4" then io.write(">AllAtOnce toggle"); Toggler(AllAtOnce)
-		else io.write(">Changes saved\n") end
-	end
-end
 function Begin(CalcTable)
 	
 end
@@ -51,12 +39,13 @@ function BeginSetTableTerminal(choice)
 	return Begin(CalcTable)
 	else
 		io.write(">Damage, Ammunition, RPS, Pierce, Projectiles Per Shot, Reload Time:\n"); choice = io.read("*l"):gsub("\n","")
-	for num1 = 1, choice:len(), 1 do
-		ParserString = ParserString..choice:sub(num1,num1);
-		if ParserString:sub(ParserString:len(),ParserString:len()) == " " then ParserString:gsub(" ",""); table.insert(CalcTable, tonumber(ParserString)); ParserString = "" end
-	end
+		for num1 = 1, choice:len(), 1 do
+			ParserString = ParserString..choice:sub(num1,num1);
+			if ParserString:sub(ParserString:len(),ParserString:len()) == " " then ParserString:gsub(" ",""); table.insert(CalcTable, tonumber(ParserString)); ParserString = "" end
+		end
 	return Begin(CalcTable)
 	end
+end
 repeat
 	io.write("1) Settings\n2)Begin\n3)EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
