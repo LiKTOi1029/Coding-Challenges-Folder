@@ -1,4 +1,8 @@
-DamagePerMag, DamagePerMinute, DamagePerSecond = false, true, false
+DamagePerMag, DamagePerMinute, DamagePerSecond = "X", "O", "X"
+function Toggler(input)
+	if input == "X" then input = "O" else input = "X" end
+	return input
+end
 function WriteFile()
 	local infile, outfile, result1, result2
 	while not infile do
@@ -13,9 +17,14 @@ function WriteFile()
 	end
 	result1, result2 = io.open(infile..".toml", "r"), io.open(outfile..".toml", "r")
 	if not result1 and not result2 then result1, result2 = io.open(infile..".toml", "w"), io.open(outfile..".toml", "w"); result1:close(); result2:close(); result1, result2 = io.open(infile..".toml", "r"), io.open(outfile..".toml", "w+") elseif result1 and result2 then return result1, result2 end
+	return result1, result2
 end
 function Settings()
-
+	io.write("1) DamagePerMag calculation ["..DamagePerMag.."]\n2) DamagePerMinute calculation ["..DamagePerMinute.."]\n3) DamagePerSecond calculation ["..DamagePerSecond.."]\n4) Accept and return to menu\n")
+	local choice = io.read("*l"):gsub("\n","")
+	while choice ~= "4" do
+		if choice == "1" then io.write("DamagePerMag calculation toggle")
+	end
 end
 function Begin()
 
