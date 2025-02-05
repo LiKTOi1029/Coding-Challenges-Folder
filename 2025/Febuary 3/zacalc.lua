@@ -10,5 +10,5 @@ end
 repeat
 	io.write("Input in the following order: DAMAGE AMMUNITION RPS PIERCE (and optionally) DAMAGE SECOND\nEXIT to exit\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if choice ~= "EXIT" and choice:find("%d+") then print(Calculator(choice)) else io.write("Input a valid number\n") end
+	if choice ~= "EXIT" and choice:find("%d+") then print(">> "..Calculator(choice)) else io.write("Input a valid number\n") end
 until choice == "EXIT"
