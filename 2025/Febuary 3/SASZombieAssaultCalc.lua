@@ -22,7 +22,7 @@ function BeginSetTableTerminal(choice)
 		io.write(">[OPTIONAL] Effect Seconds: "); effectseconds = io.read("*l"):gsub("\n",""); table.insert(CalcTable, effectseconds)
 	return Begin(CalcTable)
 	else
-		io.write(">Damage, Ammunition, RPS, Pierce, Projectiles Per Shot, Reload Time:\n"); choice = io.read("*l"):gsub("\n","")
+		io.write(">Damage, Ammunition, RPS, Pierce, Projectiles Per Shot, Reload Time, [OPTIONAL] Effect Damage, [OPTIONAL] Effect Seconds:\n"); choice = io.read("*l"):gsub("\n","")
 		for num1 = 1, choice:len(), 1 do
 			ParserString = ParserString..choice:sub(num1,num1);
 			if ParserString:sub(ParserString:len(),ParserString:len()) == " " then ParserString:gsub(" ",""); table.insert(CalcTable, tonumber(ParserString)); ParserString = "" end
