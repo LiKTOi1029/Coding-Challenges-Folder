@@ -1,8 +1,8 @@
 # This is the global settings of the calculator.
 [GLOBAL_SETTINGS]
-DamagePerMag = false # Damage per magazine
+DamagePerMag = true # Damage per magazine
 DamagePerMinute = true # Damage per minute
-DamagePerSecond = false # Damage per second
+DamagePerSecond = true # Damage per second
 AllAtOnce = true # Input all numbers at once or one by one?
 FileUsage = false # NOT IMPLEMENTED
 Logging = true # NOT IMPLEMENTED

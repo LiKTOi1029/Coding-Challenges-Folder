@@ -2,10 +2,14 @@ tinytoml = require("tinytoml");
 Settings = tinytoml.parse("settings.toml");
 DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut = Settings["GLOBAL_SETTINGS"]["DamagePerMag"], Settings["GLOBAL_SETTINGS"]["DamagePerMinute"], Settings["GLOBAL_SETTINGS"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"]
 function Begin(CalcTable)
+	local AnswersTable = {}
 	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime = (60/(MagDumpTime)+CalcTable[6])
-	local DamagePerMag, EffectCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0
+	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])
 	if (CalcTable[7] and CalcTable[8]) > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
-	local Result = MinuteReloadTime*(DamagePerMag+EffectCalc); return Result
+	if DamagePerMinute == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
+	if DamagePerMag == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
+	if DamagePerSecond == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc)) end
+	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
 	
@@ -26,7 +30,7 @@ function BeginSetTableTerminal(choice)
 		io.write(">Damage, Ammunition, RPS, Pierce, Projectiles Per Shot, Reload Time, [OPTIONAL] Effect Damage, [OPTIONAL] Effect Seconds:\n"); choice = io.read("*l"):gsub("\n","")
 		for num1 = 1, choice:len(), 1 do
 			ParserString = ParserString..choice:sub(num1,num1);
-			if ParserString:sub(ParserString:len(),ParserString:len()) == " " then ParserString:gsub(" ",""); table.insert(CalcTable, tonumber(ParserString)); ParserString = "" end
+			if ParserString:sub(ParserString:len(),ParserString:len()) == " " or ParserString:sub(ParserString:len(),ParserString:len()) == choice:sub(choice:len(),choice:len()) then ParserString:gsub(" ",""); table.insert(CalcTable, tonumber(ParserString)); ParserString = "" end
 		end
 	return Begin(CalcTable)
 	end
@@ -34,6 +38,6 @@ end
 repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then print(">>[OUTPUT]: "..BeginSetTableTerminal(choice))
+	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then print(BeginSetTableTerminal(choice))
 	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == true then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end 
 until choice == "2" or string.upper(choice) == "EXIT"
