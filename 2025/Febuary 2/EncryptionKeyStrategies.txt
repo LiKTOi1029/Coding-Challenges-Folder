@@ -1,0 +1,11 @@
+Diffie-Hellman strategy
+
+BASE1^SECRET1 modulo NUMBER2 = SUM1
+BASE1^SECRET2 modulo NUMBER2 = SUM2
+VVVVVVVVVVVVVVVVVVVVVV
+SUM2^SECRET1 modulo NUMBER2 = KEY
+SUM1^SECRET2 modulo NUMBER2 = KEY
+VVVVVVVVVVVVVVVVVVVVVV
+KEY has been reached
+
+NUMBER2 should ideally be thousands of digits long AND a prime number too.
