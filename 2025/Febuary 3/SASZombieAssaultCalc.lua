@@ -3,8 +3,9 @@ Settings = tinytoml.parse("settings.toml");
 DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut = Settings["GLOBAL_SETTINGS"]["DamagePerMag"], Settings["GLOBAL_SETTINGS"]["DamagePerMinute"], Settings["GLOBAL_SETTINGS"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"]
 function Begin(CalcTable)
 	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime = (60/(MagDumpTime)+CalcTable[6])
-	local DamagePerMag = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5])
-	if CalcTable
+	local DamagePerMag, EffectCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0
+	if (CalcTable[7] and CalcTable[8]) > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
+	local Result = MinuteReloadTime*(DamagePerMag+EffectCalc); return Result
 end
 --[[function BeginSetTableFiler()
 	
@@ -31,8 +32,8 @@ function BeginSetTableTerminal(choice)
 	end
 end
 repeat
-	io.write("1) BEGIN\n2) EXIT\n")
+	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then print(">[OUTPUT]: "..BeginSetTableTerminal(choice))
+	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then print(">>[OUTPUT]: "..BeginSetTableTerminal(choice))
 	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == true then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end 
 until choice == "2" or string.upper(choice) == "EXIT"
