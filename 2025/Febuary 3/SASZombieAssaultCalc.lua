@@ -2,13 +2,14 @@ tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); Dama
 function Begin(CalcTable)
 	for num1, _ in ipairs(CalcTable) do CalcTable[num1] = tonumber(CalcTable[num1]) end
 	local AnswersTable = {}
-	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime = (60/(MagDumpTime)+CalcTable[6])
+	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime, MinuteMagDumpTime = (60/((MagDumpTime)+CalcTable[6])), (60/(MagDumpTime))
 	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
-	local TimeSpentReloading = nil --This is the variable that holds the final result for the calculation that's supposed to figure out how many seconds a minute the gun in question reloads. The lower the better generally.
+	local TimeSpentReloadingCalc = (MinuteMagDumpTime-MinuteReloadTime)*60; local TimeSpentShootingCalc = nil
 	if CalcTable[7] and CalcTable[8] > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
 	if DamagePerMinute == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
 	if DamagePerMag == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
-	if DamagePerSecond == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc)) end
+	if DamagePerSecond == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
+	if TimeSpentReloading == true then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(TimeSpentReloadingCalc).."\n") end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
