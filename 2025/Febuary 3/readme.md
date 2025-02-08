@@ -1,6 +1,6 @@
 # SAS ZA 4 Calculator
 
-This is a script that accurate calculates the Damage Per Minute (DPM) of every single gun in the game! This means that you no longer need to do the math yourself or memorize good guns and bad guns you may simply use this for all of your calculation needs.\
+This is a script that accurate calculates the Damage Per Minute (DPM) of every single gun in the game! This means that you no longer need to do the math yourself or memorize good guns and bad guns you may simply use this for all of your calculation needs.
 ## settings.toml
 You can change the settings in the `settings.toml`. Here is a quick guide:
 ### CALCULATION
