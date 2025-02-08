@@ -15,6 +15,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 4. DefaultIn - Default input file
 5. DefaultOut - Default output file
 ## Changelog
+date: "Last compiled on `r format(Sys.Date(), '%B %d, %Y')`"
  - Planning a new formula for calculating reload time per minute
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
 
