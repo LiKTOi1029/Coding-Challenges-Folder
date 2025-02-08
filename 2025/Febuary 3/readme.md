@@ -12,4 +12,13 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 7. DefaultIn - Default input file
 8. DefaultOut - Default output file
 ### Changelog
-Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
+ - Planning a new formula for calculating reload time per minute
+ - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
+
+### Roadmap
+ - Can use files: No
+ - Can accurately calculate gun damage: Yes
+ - Gun Quality Quotient: No
+ - Logging: No
+ - UI: No
+ - All Formulas Complete: No
