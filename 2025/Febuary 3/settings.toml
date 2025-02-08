@@ -12,4 +12,5 @@ DefaultOut = false # NOT IMPLEMENTED
 DamagePerMag = true # Damage per magazine
 DamagePerMinute = true # Damage per minute
 DamagePerSecond = true # Damage per second
-TimeSpentReloading = true # How many seconds of reloading in a minute
+TimeSpentReloading = true # How many seconds of reloading per minute
+TimeSpentShooting = true # How many seconds of shooting per minute

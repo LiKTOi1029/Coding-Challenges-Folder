@@ -8,6 +8,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 2. DamagePerMinute - Enables damage per minute calculation
 3. DamagePerSecond - Enables damage per second calculation
 4. TimeSpentReloading - Enables reload time per minute calculation
+5. TimeSpentShooting - Enables shooting time per minute calculation
 ### GLOBAL_SETTINGS
 1. AllAtOnce - Type all the details of your gun in one prompt separated by spaces or one by one as the script asks?
 2. FileUsage - Should it use `DefaultIn` and `DefaultOut` as the input file and output files respectively?

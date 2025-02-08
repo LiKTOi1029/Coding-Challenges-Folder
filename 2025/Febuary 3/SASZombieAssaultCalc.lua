@@ -1,4 +1,4 @@
-tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"]
+tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
 function Begin(CalcTable)
 	for num1, _ in ipairs(CalcTable) do CalcTable[num1] = tonumber(CalcTable[num1]) end
 	local AnswersTable = {}
@@ -6,10 +6,11 @@ function Begin(CalcTable)
 	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
 	local TimeSpentReloadingCalc = (MinuteMagDumpTime-MinuteReloadTime)*60; local TimeSpentShootingCalc = nil
 	if CalcTable[7] and CalcTable[8] > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
-	if DamagePerMinute == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
-	if DamagePerMag == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
-	if DamagePerSecond == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
-	if TimeSpentReloading == true then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(TimeSpentReloadingCalc).."\n>>[OUTPUT]: Time Spend Shooting Per Minute: "..tostring(TimeSpentShootingCalc)) end
+	if DamagePerMinute then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
+	if DamagePerMag then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
+	if DamagePerSecond then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
+	if TimeSpentReloading then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(TimeSpentReloadingCalc).."\n") end
+	if TimeSpentShooting then table.insert(AnswersTable, ">>[OUTPUT]: Time Spend Shooting Per Minute: "..tostring(TimeSpentShootingCalc).."\n") end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
