@@ -11,3 +11,5 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 6. Logging - Should it log all of your operations in a logbook.toml?
 7. DefaultIn - Default input file
 8. DefaultOut - Default output file
+### Changelog
+Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
