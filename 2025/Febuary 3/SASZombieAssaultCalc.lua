@@ -9,7 +9,7 @@ function Begin(CalcTable)
 	if DamagePerMinute == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
 	if DamagePerMag == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
 	if DamagePerSecond == true then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
-	if TimeSpentReloading == true then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(TimeSpentReloadingCalc).."\n") end
+	if TimeSpentReloading == true then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(TimeSpentReloadingCalc).."\n>>[OUTPUT]: Time Spend Shooting Per Minute: "..tostring(TimeSpentShootingCalc)) end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
