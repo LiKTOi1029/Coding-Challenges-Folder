@@ -9,3 +9,5 @@ VVVVVVVVVVVVVVVVVVVVVV
 KEY has been reached
 
 NUMBER2 should ideally be thousands of digits long AND a prime number too.
+
+[OUTDATED]
