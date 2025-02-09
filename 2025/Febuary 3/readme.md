@@ -16,6 +16,10 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 4. DefaultIn - Default input file
 5. DefaultOut - Default output file
 ## Changelog
+### 2025/2/09
+ - Implemented first iteration of the Reload Time Per Minute and Shooting Time Per Minute formulas. Unfinished
+ - Fixed a niche bug where the script would calculate `(60/(Ammunition/RPS)+ReloadTime` instead of `(60/((Ammunition/RPS)+ReloadTime))`
+ - Fixed a bug where the script wouldn't assign numbers into number datatypes.
 ### 2025/2/08
  - Planning a new formula for calculating reload time per minute
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
