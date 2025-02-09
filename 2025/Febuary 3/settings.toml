@@ -1,10 +1,16 @@
 # This is the global settings of the calculator.
 [GLOBAL_SETTINGS]
-DamagePerMag = true # Damage per magazine
-DamagePerMinute = true # Damage per minute
-DamagePerSecond = true # Damage per second
-AllAtOnce = true # Input all numbers at once or one by one?
+# These are meant to be quality of life options.
+AllAtOnce = false # Input all numbers at once or one by one?
 FileUsage = false # NOT IMPLEMENTED
 Logging = true # NOT IMPLEMENTED
 DefaultIn = false # NOT IMPLEMENTED
 DefaultOut = false # NOT IMPLEMENTED
+
+[CALCULATION]
+# You can choose what values to calculate and ignore.
+DamagePerMag = true # Damage per magazine
+DamagePerMinute = true # Damage per minute
+DamagePerSecond = true # Damage per second
+TimeSpentReloading = false # How many seconds of reloading per minute IMPLEMENTED, BUT NOT FUNCTIONAL
+TimeSpentShooting = false # How many seconds of shooting per minute IMPLEMENTED, BUT NOT FUNCTIONAL
