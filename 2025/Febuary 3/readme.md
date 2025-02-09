@@ -15,7 +15,6 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 4. DefaultIn - Default input file
 5. DefaultOut - Default output file
 ## Changelog
-
 ### 2025/2/09
  - Implemented first iteration of the Reload Time Per Minute and Shooting Time Per Minute formulas. Unfinished
  - Fixed a niche bug where the script would calculate `(60/(Ammunition/RPS)+ReloadTime` instead of `(60/((Ammunition/RPS)+ReloadTime))`
@@ -24,11 +23,9 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Planning a new formula for calculating reload time per minute
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
  - Added dates to changelogs
- 
 ## Known Bugs
  - Formula is known to calculate Hotspot, Flamethrower, and in general high RPS weapons' DPM incorrectly
  - Formula is known to output `1.#IND` under very specific conditions
- 
 ## Roadmap
  - Can use files: No
  - Can accurately calculate gun damage: Yes (excluding a few niche bugs)
