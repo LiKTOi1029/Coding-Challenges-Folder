@@ -54,7 +54,7 @@ function PosIterator(Chessboard,Input)
 		for rowpositionint, Row in ipairs(Chessboard) do
 			print(tostring(rowpositionint).." Debug 2")
 			retvalue = retvalue + BoardChecker(Chessboard, rowpositionint)
-			if Row[Input] == "Q" then count = count + 1; Row[Input], Row[1] = Row[1], Row[Input]
+			if Row[Input] == "Q" then count = count + 1; Chessboard[rowpositionint][Input], Row[1] = Row[1], Chessboard[rowpositionint][Input]
 			else break end
 		end
 		for squarepositionInt, Squares in ipairs(Chessboard[count+1]) do
