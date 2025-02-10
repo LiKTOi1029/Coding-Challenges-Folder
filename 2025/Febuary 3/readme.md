@@ -6,8 +6,10 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 1. DamagePerMag - Enables damage per magazine calculation
 2. DamagePerMinute - Enables damage per minute calculation
 3. DamagePerSecond - Enables damage per second calculation
-4. TimeSpentReloading - Enables reload time per minute calculation (NON-FUNCTINAL)
-5. TimeSpentShooting - Enables shooting time per minute calculation (NON-FUNCTIONAL)
+4. TimeSpentReloading - Enables reload time per minute calculation
+5. TimeSpentShooting - Enables shooting time per minute calculation
+6. OneZombie - Enables calculation for damage per enemy (other formulas calculate for total damage per X time)
+7. OneProjectile - Enables calculation for single projectile damage (other formulas calculate for total damage per X time)
 ### GLOBAL_SETTINGS
 1. AllAtOnce - Type all the details of your gun in one prompt separated by spaces or one by one as the script asks?
 2. FileUsage - Should it use `DefaultIn` and `DefaultOut` as the input file and output files respectively?
@@ -15,6 +17,9 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 4. DefaultIn - Default input file
 5. DefaultOut - Default output file
 ## Changelog
+### 2025/2/10
+ - Implemented second, improved iretaion of the Reload Time Per Minute and SHooting Time Per Minute formulas. Unfinished and inaccurate
+ - Planned two more brand new formulas in `settings.toml`. Not implemented and unusable at this time.
 ### 2025/2/09
  - Implemented first iteration of the Reload Time Per Minute and Shooting Time Per Minute formulas. Unfinished
  - Fixed a niche bug where the script would calculate `(60/(Ammunition/RPS)+ReloadTime)` instead of `(60/((Ammunition/RPS)+ReloadTime))`
