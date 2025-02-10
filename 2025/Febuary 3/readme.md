@@ -18,7 +18,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 5. DefaultOut - Default output file
 ## Changelog
 ### 2025/2/10
- - Implemented second, improved iretaion of the Reload Time Per Minute and SHooting Time Per Minute formulas. Unfinished and inaccurate
+ - Implemented second, improved iteration of the Reload Time Per Minute and SHooting Time Per Minute formulas. Unfinished and inaccurate
  - Planned two more brand new formulas in `settings.toml`. Not implemented and unusable at this time.
 ### 2025/2/09
  - Implemented first iteration of the Reload Time Per Minute and Shooting Time Per Minute formulas. Unfinished
