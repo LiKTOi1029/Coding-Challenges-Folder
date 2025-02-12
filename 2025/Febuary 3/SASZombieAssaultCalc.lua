@@ -1,11 +1,23 @@
 tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
+local File = io.open("logbook.toml", "r"); io.input("logbook.toml"); local FirstLine = io.read("*line"); ReadAll = io.read("*all"); local ParserString, SavingString = "", ""
+if not FirstLine then error("Expected \"Gunnum=0\" Instead got nil in \"logbook.toml\" on line 1") end
+if not ReadAll then ReadAll = FirstLine end
+for num1 = 1, FirstLine:len(), 1 do
+	if FirstLine:sub(num1,num1):find("%d") then ParserString = ParserString..FirstLine:sub(num1,num1)
+	else SavingString = SavingString..FirstLine:sub(num1,num1) end
+end
+Gunnum = tonumber(ParserString)
+io.input(io.stdin)
 function Logger(results)
-	
+	Gunnum=Gunnum+1
+	ReadAll = ReadAll.."\n[GUN"..Gunnum.."]\n".."Results"..Gunnum.."=[test,1]"
+	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout); io.write("True!\n")
+	return true
 end
 function TimeCalculator(CalcTable, Boolean)
 	local TimeSpentCalc, ReloadCount, ShootCount = 0, 0, 0
 	repeat
-	TimeSpentCalc = TimeSpentCalc+((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount+CalcTable[6], ShootCount+(CalcTable[2]/CalcTable[3])
+		TimeSpentCalc = TimeSpentCalc+((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount+CalcTable[6], ShootCount+(CalcTable[2]/CalcTable[3])
 	until TimeSpentCalc >= 60
 	if TimeSpentCalc > 60 then TimeSpentCalc = TimeSpentCalc-((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount-CalcTable[6], ShootCount-(CalcTable[2]/CalcTable[3]) end
 	if Boolean then return tostring(ReloadCount)
@@ -18,11 +30,11 @@ function Begin(CalcTable)
 	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime, MinuteMagDumpTime = (60/((MagDumpTime)+CalcTable[6])), (60/(MagDumpTime))
 	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
 	if CalcTable[7] and CalcTable[8] > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
-	if DamagePerMinute then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
-	if DamagePerMag then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
-	if DamagePerSecond then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
-	if TimeSpentReloading then table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
-	if TimeSpentShooting then table.insert(AnswersTable, ">>[OUTPUT]: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
+	if DamagePerMinute then table.insert(AnswersTable, ">>OUTPUT: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
+	if DamagePerMag then table.insert(AnswersTable, ">>OUTPUT: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
+	if DamagePerSecond then table.insert(AnswersTable, ">>OUTPUT: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
+	if TimeSpentReloading then table.insert(AnswersTable, ">>OUTPUT: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
+	if TimeSpentShooting then table.insert(AnswersTable, ">>OUTPUT: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
