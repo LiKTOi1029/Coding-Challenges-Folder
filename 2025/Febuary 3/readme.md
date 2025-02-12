@@ -18,7 +18,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 5. DefaultOut - Default output file
 ## Changelog
 ### 2025/2/12
- - Implemented logging system (not functional)
+ - Implemented logging system. Off by default and not functional
  - Planning better Reload Time Per Minute and Shooting Time Per Minute calculation.
 ### 2025/2/10
  - Implemented second, improved iteration of the Reload Time Per Minute and Shooting Time Per Minute formulas. Unfinished and inaccurate
