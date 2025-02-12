@@ -1,4 +1,7 @@
 tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
+function Logger(results)
+	
+end
 function TimeCalculator(CalcTable, Boolean)
 	local TimeSpentCalc, ReloadCount, ShootCount = 0, 0, 0
 	repeat
@@ -49,6 +52,6 @@ end
 repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then print(BeginSetTableTerminal(choice))
+	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then local Answer = BeginSetTableTerminal(choice); print(Answer); Logger(Answer)
 	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == true then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end 
 until choice == "2" or string.upper(choice) == "EXIT"
