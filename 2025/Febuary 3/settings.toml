@@ -3,7 +3,7 @@
 # These are meant to be quality of life options.
 AllAtOnce = false # Input all numbers at once or one by one?
 FileUsage = false # NOT IMPLEMENTED
-Logging = false # NOT IMPLEMENTED
+Logging = true # NOT IMPLEMENTED
 DefaultIn = false # NOT IMPLEMENTED
 DefaultOut = false # NOT IMPLEMENTED
 

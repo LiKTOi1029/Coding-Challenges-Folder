@@ -1,6 +1,6 @@
 tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
 if Logging then 
-	local File = io.open("logbook.toml", "r"); io.input("logbook.toml"); local FirstLine = io.read("*line"); ReadAll = io.read("*all"); local ParserString, SavingString = "", ""
+	local File = io.open("logbook.toml", "r"); io.input("logbook.toml"); local FirstLine = io.read("*line"); ReadAll = io.read("*all"); ParserString, SavingString = "", ""
 	if not FirstLine then error("Expected \"Gunnum=0\" Instead got nil in \"logbook.toml\" on line 1") end
 	if not ReadAll then ReadAll = FirstLine end
 	for num1 = 1, FirstLine:len(), 1 do
@@ -11,9 +11,11 @@ if Logging then
 	io.input(io.stdin)
 end
 function Logger(results)
-	Gunnum=Gunnum+1
-	ReadAll = ReadAll.."\n[GUN"..Gunnum.."]\n".."Results"..Gunnum.."=[test,1]"
+	io.write("Please input a name without spaces or symbols: ")
+	local LogName = io.read()
+	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\n".."Results"..Gunnum.."=true\n"
 	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout); io.write("True!\n")
+	Gunnum=Gunnum+1
 	return true
 end
 function TimeCalculator(CalcTable, Boolean)
