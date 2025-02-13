@@ -11,7 +11,15 @@ if Logging then
 	io.input(io.stdin)
 end
 function OutputFormatter(results, optionalboolean)
-	
+	local ParsingString, SolutionsTable = "", {}
+	if not optionalboolean then
+		for num2 = 1, results:len(), 1 do
+			if results:sub(num2,num2):find("%d") then ParsingString = ParsingString..results:sub(num2,num2) 
+			elseif results:sub(num2,num2):find(".") then ParsingString = ParsingString..results:sub(num2,num2)
+			elseif ParsingString == "" and results:sub(num2,num2):find("%D") then nil 
+			else table.insert(SolutionsTable, tonumber(ParsingString):gsub(" ",""):gsub("\n","")); ParsingString = "" end
+		end
+	end
 end
 function Logger(results)
 	Gunnum=Gunnum+1
@@ -45,6 +53,8 @@ function Begin(CalcTable)
 	if DamagePerSecond then table.insert(AnswersTable, ">>OUTPUT: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
 	if TimeSpentReloading then table.insert(AnswersTable, ">>OUTPUT: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
 	if TimeSpentShooting then table.insert(AnswersTable, ">>OUTPUT: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
+	local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true), TimeCalculator(CalcTable, false)}
+	OutputFormatter(LogTheseNumbers, false)
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
@@ -74,6 +84,6 @@ end
 repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then local Answer = BeginSetTableTerminal(choice); print(Answer); if Logging then Logger(Answer) end
+	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then local Answer = BeginSetTableTerminal(choice); print(Answer);
 	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == true then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end 
 until choice == "2" or string.upper(choice) == "EXIT"
