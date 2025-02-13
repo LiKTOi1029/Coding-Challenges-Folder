@@ -19,6 +19,9 @@ function OutputFormatter(results, optionalboolean)
 			elseif ParsingString == "" and results:sub(num2,num2):find("%D") then nil 
 			else table.insert(SolutionsTable, tonumber(ParsingString):gsub(" ",""):gsub("\n","")); ParsingString = "" end
 		end
+		Logger(SolutionsTable)
+	else
+		Logger(results)
 	end
 end
 function Logger(results)
@@ -27,8 +30,8 @@ function Logger(results)
 	local LogName = io.read()
 	print(SavingString..Gunnum.."\n")
 	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
-	print("\nResults"..Gunnum.."=true\n")
-	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\nResults"..Gunnum.."=true\n"
+	print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
+	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5]
 	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout); io.write("True!\n")
 	return true
 end
@@ -54,7 +57,7 @@ function Begin(CalcTable)
 	if TimeSpentReloading then table.insert(AnswersTable, ">>OUTPUT: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
 	if TimeSpentShooting then table.insert(AnswersTable, ">>OUTPUT: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
 	local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true), TimeCalculator(CalcTable, false)}
-	OutputFormatter(LogTheseNumbers, false)
+	OutputFormatter(LogTheseNumbers, true)
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
