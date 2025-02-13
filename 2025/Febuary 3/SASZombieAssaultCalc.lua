@@ -56,8 +56,7 @@ function Begin(CalcTable)
 	if DamagePerSecond then table.insert(AnswersTable, ">>OUTPUT: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
 	if TimeSpentReloading then table.insert(AnswersTable, ">>OUTPUT: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
 	if TimeSpentShooting then table.insert(AnswersTable, ">>OUTPUT: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
-	local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true), TimeCalculator(CalcTable, false)}
-	OutputFormatter(LogTheseNumbers, true)
+	if Logging then local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true), TimeCalculator(CalcTable, false)}; OutputFormatter(LogTheseNumbers, true) end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
