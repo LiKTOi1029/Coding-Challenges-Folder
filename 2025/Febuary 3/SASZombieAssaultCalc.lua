@@ -10,7 +10,7 @@ if Logging then
 	Gunnum = tonumber(ParserString)
 	io.input(io.stdin)
 end
-function Logger(results)
+function Logger(results, optionalboolean)
 	io.write("Please input a name without spaces or symbols: ")
 	local LogName = io.read()
 	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\n".."Results"..Gunnum.."=true\n"
