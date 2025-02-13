@@ -10,12 +10,18 @@ if Logging then
 	Gunnum = tonumber(ParserString)
 	io.input(io.stdin)
 end
-function Logger(results, optionalboolean)
+function OutputFormatter(results, optionalboolean)
+	
+end
+function Logger(results)
+	Gunnum=Gunnum+1
 	io.write("Please input a name without spaces or symbols: ")
 	local LogName = io.read()
-	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\n".."Results"..Gunnum.."=true\n"
+	print(SavingString..Gunnum.."\n")
+	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
+	print("\nResults"..Gunnum.."=true\n")
+	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\nResults"..Gunnum.."=true\n"
 	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout); io.write("True!\n")
-	Gunnum=Gunnum+1
 	return true
 end
 function TimeCalculator(CalcTable, Boolean)
