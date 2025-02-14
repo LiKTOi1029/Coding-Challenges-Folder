@@ -27,7 +27,7 @@ function Logger(results)
 	Gunnum=Gunnum+1; local LogName
 	if NameLogs then
 		io.write("Please input a name without spaces or symbols: ")
-		local LogName = io.read()
+		LogName = io.read()
 	else LogName = "Gun" end
 	print(SavingString..Gunnum.."\n")
 	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")

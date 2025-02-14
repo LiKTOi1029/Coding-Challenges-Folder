@@ -4,7 +4,7 @@
 AllAtOnce = false # Input all numbers at once or one by one?
 FileUsage = false # NOT IMPLEMENTED
 Logging = true # Input all results into logbook.toml?
-NameLogs = false # Prompt to name every single log?
+NameLogs = true # Prompt to name every single log?
 DefaultIn = false # NOT IMPLEMENTED
 DefaultOut = false # NOT IMPLEMENTED
 
