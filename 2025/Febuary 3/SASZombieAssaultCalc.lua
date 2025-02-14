@@ -1,4 +1,4 @@
-tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
+tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, NameLogs, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["NameLogs"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"]
 if Logging then 
 	local File = io.open("logbook.toml", "r"); io.input("logbook.toml"); local FirstLine = io.read("*line"); ReadAll = io.read("*all"); ParserString, SavingString = "", ""
 	if not FirstLine then error("Expected \"Gunnum=0\" Instead got nil in \"logbook.toml\" on line 1") end
@@ -16,24 +16,25 @@ function OutputFormatter(results, optionalboolean)
 		for num2 = 1, results:len(), 1 do
 			if results:sub(num2,num2):find("%d") then ParsingString = ParsingString..results:sub(num2,num2) 
 			elseif results:sub(num2,num2):find(".") then ParsingString = ParsingString..results:sub(num2,num2)
-			elseif ParsingString == "" and results:sub(num2,num2):find("%D") then nil 
 			else table.insert(SolutionsTable, tonumber(ParsingString):gsub(" ",""):gsub("\n","")); ParsingString = "" end
 		end
-		Logger(SolutionsTable)
+		return Logger(SolutionsTable)
 	else
-		Logger(results)
+		return Logger(results)
 	end
 end
 function Logger(results)
-	Gunnum=Gunnum+1
-	io.write("Please input a name without spaces or symbols: ")
-	local LogName = io.read()
+	Gunnum=Gunnum+1; local LogName
+	if NameLogs then
+		io.write("Please input a name without spaces or symbols: ")
+		local LogName = io.read()
+	else LogName = "Gun" end
 	print(SavingString..Gunnum.."\n")
 	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
 	print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
 	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5]
-	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout); io.write("True!\n")
-	return true
+	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout);
+	return print(tostring(true))
 end
 function TimeCalculator(CalcTable, Boolean)
 	local TimeSpentCalc, ReloadCount, ShootCount = 0, 0, 0
@@ -41,8 +42,9 @@ function TimeCalculator(CalcTable, Boolean)
 		TimeSpentCalc = TimeSpentCalc+((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount+CalcTable[6], ShootCount+(CalcTable[2]/CalcTable[3])
 	until TimeSpentCalc >= 60
 	if TimeSpentCalc > 60 then TimeSpentCalc = TimeSpentCalc-((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount-CalcTable[6], ShootCount-(CalcTable[2]/CalcTable[3]) end
-	if Boolean then return tostring(ReloadCount)
-	elseif not Boolean then return tostring(ShootCount)
+	local ErrorMargin = ((60-(ReloadCount+ShootCount))/60)*100
+	if Boolean then return {tostring(ReloadCount),tostring(ErrorMargin)}
+	elseif not Boolean then return {tostring(ShootCount),tostring(ErrorMargin)}
 	else return tostring(nil) end
 end
 function Begin(CalcTable)
@@ -51,12 +53,12 @@ function Begin(CalcTable)
 	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime, MinuteMagDumpTime = (60/((MagDumpTime)+CalcTable[6])), (60/(MagDumpTime))
 	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
 	if CalcTable[7] and CalcTable[8] > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
-	if DamagePerMinute then table.insert(AnswersTable, ">>OUTPUT: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
-	if DamagePerMag then table.insert(AnswersTable, ">>OUTPUT: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
-	if DamagePerSecond then table.insert(AnswersTable, ">>OUTPUT: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
-	if TimeSpentReloading then table.insert(AnswersTable, ">>OUTPUT: Time Spent Reloading Per Minute: "..TimeCalculator(CalcTable, true).."\n") end
-	if TimeSpentShooting then table.insert(AnswersTable, ">>OUTPUT: Time Spend Shooting Per Minute: "..TimeCalculator(CalcTable, false).."\n") end
-	if Logging then local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true), TimeCalculator(CalcTable, false)}; OutputFormatter(LogTheseNumbers, true) end
+	if DamagePerMinute then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
+	if DamagePerMag then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Mag: "..tostring(DamagePerMagCalc).."\n") end
+	if DamagePerSecond then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Second: "..tostring(DamagePerSecondCalc).."\n") end
+	if TimeSpentReloading then local Answer = TimeCalculator(CalcTable, true); table.insert(AnswersTable, ">>[OUTPUT]: Time Spent Reloading Per Minute: "..tostring(Answer[1]).." With an error margin of "..tostring(Answer[2]).."%\n") end
+	if TimeSpentShooting then local Answer = TimeCalculator(CalcTable, false); table.insert(AnswersTable, ">>[OUTPUT]: Time Spend Shooting Per Minute: "..tostring(Answer[1]).." With an error margin of "..tostring(Answer[2]).."%\n") end
+	if Logging then local LogTheseNumbers = {MinuteReloadTime*(DamagePerMagCalc+EffectCalc), DamagePerMagCalc, DamagePerSecondCalc, TimeCalculator(CalcTable, true)[1], TimeCalculator(CalcTable, false)[1]}; OutputFormatter(LogTheseNumbers, true) end
 	local Result = table.concat(AnswersTable); return Result
 end
 --[[function BeginSetTableFiler()
