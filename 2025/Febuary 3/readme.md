@@ -14,9 +14,14 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 1. AllAtOnce - Type all the details of your gun in one prompt separated by spaces or one by one as the script asks?
 2. FileUsage - Should it use `DefaultIn` and `DefaultOut` as the input file and output files respectively?
 3. Logging - Should it log all of your operations in a logbook.toml?
-4. DefaultIn - Default input file
-5. DefaultOut - Default output file
+4. NameLogs - Should the script ask the user to name every log made?
+5. DefaultIn - Default input file
+6. DefaultOut - Default output file
 ## Changelog
+### 2025/2/14
+ - Finalizing logging system. First development build is almost ready.
+ - Added new option `NameLogs` into `settings.toml` to set the script to automatically name each gun instead of manually prompting for it for every log.
+ - Implmented a margin of error calculator for the `ReloadingTimePerMinute` and `ShootingTimePerMinute` to guage how incorrect the calculations were.
 ### 2025/2/12
  - Implemented logging system. Off by default and not fully functional
  - Planning better Reload Time Per Minute and Shooting Time Per Minute calculation.
