@@ -32,8 +32,9 @@ function Logger(results)
 	print(SavingString..Gunnum.."\n")
 	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
 	print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
-	ReadAll = SavingString..Gunnum.."\n"..ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5].."\n"
-	io.output("logbook.toml"); io.write(ReadAll); io.output(io.stdout);
+	local FirstLine = SavingString..Gunnum.."\n"
+	ReadAll = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5].."\n"
+	io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout);
 	return print(tostring(true))
 end
 function TimeCalculator(CalcTable, Boolean)
