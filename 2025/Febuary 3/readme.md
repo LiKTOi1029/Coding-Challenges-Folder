@@ -45,6 +45,6 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Can use files: No
  - Can accurately calculate gun damage: Yes (excluding a few niche bugs)
  - Gun Quality Quotient: No
- - Logging: No
+ - Logging: Yes (excluding a few common bugs)
  - UI: No
  - All Formulas Complete: No
