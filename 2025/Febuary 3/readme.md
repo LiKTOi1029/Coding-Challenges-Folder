@@ -37,8 +37,10 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
  - Added dates to changelogs
 ## Known Bugs
- - Formula is known to calculate Hotspot, Flamethrower, and in general high RPS weapons' DPM incorrectly
- - Formula is known to output `1.#IND` under very specific conditions
+ - `Gunnum` in `logbook.toml` is known not to change upon adding new logs
+ - `logbook.toml` doesn't save `Error Margin` of all `ReloadTimePerMinute` and `ShootingTimePerMinute` calculations
+ - `logbook.toml` is known to concatenate the ends to the beginnings of each gun log. Beware when using `Logging=true`
+ - The formula is known to calculate the effect damage incredibly inaccurately.
 ## Roadmap
  - Can use files: No
  - Can accurately calculate gun damage: Yes (excluding a few niche bugs)
