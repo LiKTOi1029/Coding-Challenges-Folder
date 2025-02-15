@@ -18,6 +18,8 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 5. DefaultIn - Default input file
 6. DefaultOut - Default output file
 ## Changelog
+### 2025/2/15
+ - Fixed a bug where the ends and beginnings of logs in `logbook.toml` would concatenate
 ### 2025/2/14
  - Finalizing logging system. First development build is almost ready.
  - Added new option `NameLogs` into `settings.toml` to set the script to automatically name each gun instead of manually prompting for it for every log.
@@ -37,9 +39,8 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
  - Added dates to changelogs
 ## Known Bugs
- - `Gunnum` in `logbook.toml` is known not to change upon adding new logs
+ - `Gunnum` in `logbook.toml` is known not to increment to match the number of logs upon adding new logs
  - `logbook.toml` doesn't save `Error Margin` of all `ReloadTimePerMinute` and `ShootingTimePerMinute` calculations
- - `logbook.toml` is known to concatenate the ends to the beginnings of each gun log. Beware when using `Logging=true`
  - The formula is known to calculate the effect damage incredibly inaccurately.
 ## Roadmap
  - Can use files: No
