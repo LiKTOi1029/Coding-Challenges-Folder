@@ -90,6 +90,6 @@ repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
 	if (choice == "1" or string.upper(choice) == "BEGIN") and not FileUsage then local Answer = BeginSetTableTerminal(choice); print(Answer);
-	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") 
+	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end
 until choice == "2" or string.upper(choice) == "EXIT"
 Logger()
