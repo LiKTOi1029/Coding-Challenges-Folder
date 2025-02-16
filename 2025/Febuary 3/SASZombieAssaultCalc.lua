@@ -24,7 +24,7 @@ function OutputFormatter(results, optionalboolean)
 	end
 end
 function Logger(results)
-	Gunnum=Gunnum+1; local DamagePerMinute, DamagePerMagazine, DamagePerSecond, TimeSpentReloadingVar, TimeSpentShootingVar, LogName = results[1], results[2], results[3], results[4], results[5]
+	do Gunnum=Gunnum+1 end; local DamagePerMinute, DamagePerMagazine, DamagePerSecond, TimeSpentReloadingVar, TimeSpentShootingVar, LogName = results[1], results[2], results[3], results[4], results[5]
 	if result then 
 		if NameLogs then
 			io.write("Please input a name without spaces or symbols: ")
