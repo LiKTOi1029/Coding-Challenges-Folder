@@ -24,7 +24,7 @@ function OutputFormatter(results, optionalboolean)
 	end
 end
 function Logger(results)
-	Gunnum=Gunnum+1; local LogName
+	Gunnum=Gunnum+1; local DamagePerMinute, DamagePerMagazine, DamagePerSecond, TimeSpentReloadingVar, TimeSpentShootingVar, LogName = results[1], results[2], results[3], results[4], results[5]
 	if result then 
 		if NameLogs then
 			io.write("Please input a name without spaces or symbols: ")
@@ -33,7 +33,7 @@ function Logger(results)
 		print(SavingString..Gunnum.."\n")
 		print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
 		print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
-		ReadAll, FirstLine = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5].."\n", SavingString..Gunnum.."\n"
+		ReadAll, FirstLine = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..DamagePerMinute.."\nDamagePerMagazine="..DamagerPerMagazine.."\nDamagePerSecond="..DamagePerSecond.."\nTimeSpentReloading="..TimeSpentReloadingVar.."\nTimeSpentShooting="..TimeSpentShootingVar.."\n", SavingString..Gunnum.."\n"
 	else io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout); end
 	return print(tostring(true))
 end
@@ -90,6 +90,6 @@ repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
 	if (choice == "1" or string.upper(choice) == "BEGIN") and not FileUsage then local Answer = BeginSetTableTerminal(choice); print(Answer);
-	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.")
-	elseif (choice == "3") or string.upper(choice) == "SAVE" and not FileUsage and Logging then Logger() end 
+	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") 
 until choice == "2" or string.upper(choice) == "EXIT"
+Logger()
