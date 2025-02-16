@@ -24,16 +24,17 @@ function OutputFormatter(results, optionalboolean)
 	end
 end
 function Logger(results)
-	do Gunnum=Gunnum+1 end; local DamagePerMinute, DamagePerMagazine, DamagePerSecond, TimeSpentReloadingVar, TimeSpentShootingVar, LogName = results[1], results[2], results[3], results[4], results[5]
-	if result then 
+	do Gunnum=Gunnum+1 end; local LogName
+	if results then 
 		if NameLogs then
 			io.write("Please input a name without spaces or symbols: ")
 			LogName = io.read()
 		else LogName = "Gun" end
+		local DamagePerMinute, DamagePerMagazine, DamagePerSecond, TimeSpentReloadingVar, TimeSpentShootingVar = results[1], results[2], results[3], results[4], results[5]
 		print(SavingString..Gunnum.."\n")
 		print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
 		print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
-		ReadAll, FirstLine = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..DamagePerMinute.."\nDamagePerMagazine="..DamagerPerMagazine.."\nDamagePerSecond="..DamagePerSecond.."\nTimeSpentReloading="..TimeSpentReloadingVar.."\nTimeSpentShooting="..TimeSpentShootingVar.."\n", SavingString..Gunnum.."\n"
+		ReadAll, FirstLine = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..DamagePerMinute.."\nDamagePerMagazine="..DamagePerMagazine.."\nDamagePerSecond="..DamagePerSecond.."\nTimeSpentReloading="..TimeSpentReloadingVar.."\nTimeSpentShooting="..TimeSpentShootingVar.."\n", SavingString..Gunnum.."\n"
 	else io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout); end
 	return print(tostring(true))
 end
