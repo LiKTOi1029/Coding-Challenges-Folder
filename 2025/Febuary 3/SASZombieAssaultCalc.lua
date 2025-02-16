@@ -25,16 +25,16 @@ function OutputFormatter(results, optionalboolean)
 end
 function Logger(results)
 	Gunnum=Gunnum+1; local LogName
-	if NameLogs then
-		io.write("Please input a name without spaces or symbols: ")
-		LogName = io.read()
-	else LogName = "Gun" end
-	print(SavingString..Gunnum.."\n")
-	print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
-	print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
-	local FirstLine = SavingString..Gunnum.."\n"
-	ReadAll = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5].."\n"
-	io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout);
+	if result then 
+		if NameLogs then
+			io.write("Please input a name without spaces or symbols: ")
+			LogName = io.read()
+		else LogName = "Gun" end
+		print(SavingString..Gunnum.."\n")
+		print(ReadAll.."\n["..LogName.."_"..Gunnum.."]")
+		print("DamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5])
+		ReadAll, FirstLine = ReadAll.."\n["..LogName.."_"..Gunnum.."]\nDamagePerMinute="..results[1].."\nDamagePerMagazine="..results[2].."\nDamagePerSecond="..results[3].."\nTimeSpentReloading="..results[4].."\nTimeSpentShooting="..results[5].."\n", SavingString..Gunnum.."\n"
+	else io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout); end
 	return print(tostring(true))
 end
 function TimeCalculator(CalcTable, Boolean)
@@ -89,6 +89,7 @@ end
 repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == false then local Answer = BeginSetTableTerminal(choice); print(Answer);
-	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage == true then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end 
+	if (choice == "1" or string.upper(choice) == "BEGIN") and not FileUsage then local Answer = BeginSetTableTerminal(choice); print(Answer);
+	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.")
+	elseif (choice == "2") or string.upper(choice) == "SAVE" and not FileUsage and Logging then Logger() end 
 until choice == "2" or string.upper(choice) == "EXIT"
