@@ -38,17 +38,6 @@ function Logger(results)
 	else io.output("logbook.toml"); io.write(FirstLine..ReadAll); io.output(io.stdout); end
 	return print(tostring(true))
 end
-function TimeCalculator(CalcTable, Boolean)
-	--[[local TimeSpentCalc, ReloadCount, ShootCount = 0, 0, 0
-	repeat
-		TimeSpentCalc = TimeSpentCalc+((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount+CalcTable[6], ShootCount+(CalcTable[2]/CalcTable[3])
-	until TimeSpentCalc >= 60
-	if TimeSpentCalc > 60 then TimeSpentCalc = TimeSpentCalc-((CalcTable[2]/CalcTable[3])+CalcTable[6]); ReloadCount, ShootCount = ReloadCount-CalcTable[6], ShootCount-(CalcTable[2]/CalcTable[3]) end
-	local ErrorMargin = ((60-(ReloadCount+ShootCount))/60)*100
-	if Boolean then return {tostring(ReloadCount),tostring(ErrorMargin)}
-	elseif not Boolean then return {tostring(ShootCount),tostring(ErrorMargin)}
-	else return tostring(nil) end]]
-end
 function Begin(CalcTable)
 	for num1, _ in ipairs(CalcTable) do CalcTable[num1] = tonumber(CalcTable[num1]) end
 	local AnswersTable = {}
