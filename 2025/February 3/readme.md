@@ -20,6 +20,8 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 ## Changelog
 ### 2025/2/18
  - Fixed a bug where inputting `0` and ` ` indiscriminately into the effect damage and effect time prompts would crash the script.
+ - Finalized formula and implemented formula for calculating reload time per minute and shooting time per minute. There is an amount which it is inaccurate by, however that would be in extremely small decimals. Too small to make a huge difference (10 decimals and above to find inaccuracies).
+ - Removed now redundant Error Margin calculation
 ### 2025/2/16
  - Fixed a bug where `Gunnum` in `logbook.toml` doesn't change when adding new logs.
 ### 2025/2/15
@@ -43,13 +45,11 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
  - Added dates to changelogs
 ## Known Bugs
- - `logbook.toml` doesn't save `Error Margin` of all `ReloadTimePerMinute` and `ShootingTimePerMinute` calculations
  - The formula is known to calculate the effect damage incredibly inaccurately.
- - The formula is known to calculate the time spent shooting and time spent reloading inaccurately (Margin of error displays how incorrect it is)
 ## Roadmap
  - Can use files: No
  - Can accurately calculate gun damage: Partially
  - Gun Quality Quotient: No
- - Logging: Yes (excluding a few common bugs)
+ - Logging: Yes
  - UI: No
  - All Formulas Complete: No
