@@ -18,6 +18,8 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 5. DefaultIn - Default input file
 6. DefaultOut - Default output file
 ## Changelog
+### 2025/2/18
+ - Fixed a bug where inputting `0` and ` ` indiscriminately into the effect damage and effect time prompts would crash the script.
 ### 2025/2/16
  - Fixed a bug where `Gunnum` in `logbook.toml` doesn't change when I add new logs.
 ### 2025/2/15
