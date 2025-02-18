@@ -27,7 +27,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 ### 2025/2/14
  - Finalizing logging system. First development build is almost ready.
  - Added new option `NameLogs` into `settings.toml` to set the script to automatically name each gun instead of manually prompting for it for every log.
- - Implmented a margin of error calculator for the `ReloadingTimePerMinute` and `ShootingTimePerMinute` to guage how incorrect the calculations were.
+ - Implemented a margin of error calculator for the `ReloadingTimePerMinute` and `ShootingTimePerMinute` to guage how incorrect the calculations were.
 ### 2025/2/12
  - Implemented logging system. Off by default and not fully functional
  - Planning better Reload Time Per Minute and Shooting Time Per Minute calculation.
