@@ -41,7 +41,6 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Fixed a bug where inputting 0 for Effect Damage and Effect Time would result in `1.#INF`
  - Added dates to changelogs
 ## Known Bugs
- - If you insert `0` and `` nothing indiscriminately the script will attempt to compare `0` with `nil` throwing an error and crashing the script
  - `logbook.toml` doesn't save `Error Margin` of all `ReloadTimePerMinute` and `ShootingTimePerMinute` calculations
  - The formula is known to calculate the effect damage incredibly inaccurately.
 ## Roadmap
