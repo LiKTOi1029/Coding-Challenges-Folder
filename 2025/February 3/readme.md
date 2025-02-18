@@ -48,7 +48,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - The formula is known to calculate the time spent shooting and time spent reloading inaccurately (Margin of error displays how incorrect it is)
 ## Roadmap
  - Can use files: No
- - Can accurately calculate gun damage: Yes (partially)
+ - Can accurately calculate gun damage: Partially
  - Gun Quality Quotient: No
  - Logging: Yes (excluding a few common bugs)
  - UI: No
