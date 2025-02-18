@@ -21,7 +21,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 ### 2025/2/18
  - Fixed a bug where inputting `0` and ` ` indiscriminately into the effect damage and effect time prompts would crash the script.
 ### 2025/2/16
- - Fixed a bug where `Gunnum` in `logbook.toml` doesn't change when I add new logs.
+ - Fixed a bug where `Gunnum` in `logbook.toml` doesn't change when adding new logs.
 ### 2025/2/15
  - Fixed a bug where the ends and beginnings of logs in `logbook.toml` would concatenate
 ### 2025/2/14
