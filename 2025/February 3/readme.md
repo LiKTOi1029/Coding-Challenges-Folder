@@ -45,7 +45,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 ## Known Bugs
  - `logbook.toml` doesn't save `Error Margin` of all `ReloadTimePerMinute` and `ShootingTimePerMinute` calculations
  - The formula is known to calculate the effect damage incredibly inaccurately.
- - The formula is known to calculate the time spent shooting and time spent reloading inaccurately
+ - The formula is known to calculate the time spent shooting and time spent reloading inaccurately (Margin of error displays how incorrect it is)
 ## Roadmap
  - Can use files: No
  - Can accurately calculate gun damage: Yes (excluding a few niche bugs)
