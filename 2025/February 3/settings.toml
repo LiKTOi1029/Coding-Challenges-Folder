@@ -7,6 +7,7 @@ Logging = true # Input all results into logbook.toml?
 NameLogs = true # Prompt to name every single log?
 DefaultIn = false # NOT IMPLEMENTED
 DefaultOut = false # NOT IMPLEMENTED
+SaveStartingStatistics = false # NOT IMPLEMENTED
 
 [CALCULATION]
 # You can choose what values to calculate and ignore.
