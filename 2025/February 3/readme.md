@@ -19,8 +19,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 6. DefaultOut - Default output file
 ## Changelog
 ### 2025/2/21
- - Added a new option to `settings.toml` for switching between simulating a whole minute or outputting the average when calculating Shooting/Minute and Reload/Minute
- - Small adjustments to the codebase
+ - Added a new option to `settings.toml` for switching between simulating a whole minute or outputting the average when calculating Shooting/Minute and Reload/Minute. Please note this is still all experimental and subject to change.
 ### 2025/2/18
  - Fixed a bug where inputting `0` and ` ` indiscriminately into the effect damage and effect time prompts would crash the script.
  - Finalized formula and implemented formula for calculating reload time per minute and shooting time per minute. There is an amount which it is inaccurate by, however that would be in extremely small decimals. Too small to make a huge difference (4 decimals and above to find inaccuracies).
