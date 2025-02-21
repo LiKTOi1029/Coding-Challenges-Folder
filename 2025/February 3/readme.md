@@ -51,6 +51,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
  - Added dates to changelogs
 ## Known Bugs
  - The formula is known to calculate the effect damage incredibly inaccurately.
+ - The naive loop recently implemented is known to add up more seconds than a minute
 ## Roadmap
  - Can use files: No
  - Can accurately calculate gun damage: Partially
