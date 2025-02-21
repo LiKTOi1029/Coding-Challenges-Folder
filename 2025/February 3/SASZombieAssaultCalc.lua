@@ -1,4 +1,4 @@
-tinytoml = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, NameLogs, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting, SimulateOrAverage = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["NameLogs"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"], Settings["CALCULATION"]["Simulate"]
+tinytoml, UserInputRecieved = require("tinytoml"); Settings = tinytoml.parse("settings.toml"); DamagePerMag, DamagePerMinute, DamagePerSecond, AllAtOnce, FileUsage, Logging, NameLogs, DefaultIn, DefaultOut, TimeSpentReloading, TimeSpentShooting, SimulateOrAverage = Settings["CALCULATION"]["DamagePerMag"], Settings["CALCULATION"]["DamagePerMinute"], Settings["CALCULATION"]["DamagePerSecond"], Settings["GLOBAL_SETTINGS"]["AllAtOnce"],  Settings["GLOBAL_SETTINGS"]["FileUsage"], Settings["GLOBAL_SETTINGS"]["Logging"], Settings["GLOBAL_SETTINGS"]["NameLogs"], Settings["GLOBAL_SETTINGS"]["DefaultIn"], Settings["GLOBAL_SETTINGS"]["DefaultOut"], Settings["CALCULATION"]["TimeSpentReloading"], Settings["CALCULATION"]["TimeSpentShooting"], Settings["CALCULATION"]["Simulate"]
 if Logging then 
 	local File = io.open("logbook.toml", "r"); io.input("logbook.toml"); local FirstLine = io.read("*line"); ReadAll = io.read("*all"); ParserString, SavingString = "", ""
 	if not FirstLine then error("Expected \"Gunnum=0\" Instead got nil in \"logbook.toml\" on line 1") end
@@ -26,9 +26,9 @@ end
 function TimeCalculator(CalcTable, Boolean)
 	local IntParser, ShootingVariable, ReloadingVariable = 0, 0, 0
 	repeat
-		IntParser = IntParser+(CalcTable[2]/CalcTable[3])
+		IntParser = IntParser+(CalcTable[2]/CalcTable[3]); ShootingVariable = ShootingVariable+(CalcTable[2]/CalcTable[3])
 		if IntParser+CalcTable[6] > 60 then IntParser, ShootingVariable = IntParser+(60-IntParser), ShootingVariable+(CalcTable[2]/CalcTable[3]); break end
-		IntParser = IntParser+CalcTable[6]
+		IntParser = IntParser+CalcTable[6]; ReloadingVariable = ReloadingVariable+CalcTable[6]
 		if IntParser+(CalcTable[2]/CalcTable[3]) > 60 then IntParser, ReloadingVariable = IntParser+(60-IntParser), ReloadingVariable+CalcTable[6]; break end
 	until true == false
 	if Boolean then return ReloadingVariable
@@ -93,7 +93,7 @@ end
 repeat
 	io.write(">1) BEGIN\n>2) EXIT\n")
 	local choice = io.read("*l"):gsub("\n","")
-	if (choice == "1" or string.upper(choice) == "BEGIN") and not FileUsage then local Answer = BeginSetTableTerminal(choice); print(Answer);
+	if (choice == "1" or string.upper(choice) == "BEGIN") and not FileUsage then local Answer = BeginSetTableTerminal(choice); print(Answer); UserInputRecieved = true
 	elseif (choice == "1" or string.upper(choice) == "BEGIN") and FileUsage then print(">[WARNING]: Turn FileUsage off. It isn't implemented as of this time.") end
 until choice == "2" or string.upper(choice) == "EXIT"
-Logger()
+if UserInputRecieved then Logger() end
