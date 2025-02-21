@@ -15,6 +15,6 @@ DamagePerMinute = true # Damage per minute
 DamagePerSecond = true # Damage per second
 TimeSpentReloading = true # How many seconds of reloading per minute
 TimeSpentShooting = true # How many seconds of shooting per minute
-Simulate = false # Should the script use the average TimeSpentShooting and TimeSpentReloading calculations or simulate a single minute NOT IMPLEMENTED
+Simulate = false # Should the script use the average TimeSpentShooting and TimeSpentReloading calculations or simulate a single minute
 OneZombie = false # Calculate damage for one zombie or for multiple? NOT IMPLEMENTED
 OneProjectile = false # Calculate the damage of a single projectile or all of the projectiles? NOT IMPLEMENTED
