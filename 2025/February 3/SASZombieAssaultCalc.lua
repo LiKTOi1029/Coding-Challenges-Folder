@@ -26,10 +26,12 @@ end
 function TimeCalculator(CalcTable, Boolean)
 	local IntParser, ShootingVariable, ReloadingVariable = 0, 0, 0
 	repeat
-		IntParser = IntParser+(CalcTable[2]/CalcTable[3]); ShootingVariable = ShootingVariable+(CalcTable[2]/CalcTable[3])
+		IntParser = IntParser+(CalcTable[2]/CalcTable[3])
 		if IntParser+CalcTable[6] > 60 then IntParser, ShootingVariable = IntParser+(60-IntParser), ShootingVariable+(CalcTable[2]/CalcTable[3]); break end
-		IntParser = IntParser+CalcTable[6]; ReloadingVariable = ReloadingVariable+CalcTable[6]
+		ShootingVariable = ShootingVariable+(CalcTable[2]/CalcTable[3])
+		IntParser = IntParser+CalcTable[6]
 		if IntParser+(CalcTable[2]/CalcTable[3]) > 60 then IntParser, ReloadingVariable = IntParser+(60-IntParser), ReloadingVariable+CalcTable[6]; break end
+		ReloadingVariable = ReloadingVariable+CalcTable[6]
 	until true == false
 	if Boolean then return ReloadingVariable
 	else return ShootingVariable end
