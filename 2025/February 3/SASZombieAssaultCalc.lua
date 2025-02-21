@@ -53,7 +53,7 @@ function Begin(CalcTable)
 	for num1, _ in ipairs(CalcTable) do CalcTable[num1] = tonumber(CalcTable[num1]) end
 	local AnswersTable, ResultsReloading, ResultsShooting = {}
 	local MagDumpTime = (CalcTable[2]/CalcTable[3]); local MinuteReloadTime = (60/((MagDumpTime)+CalcTable[6]))
-	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime*CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
+	local DamagePerMagCalc, EffectCalc, DamagePerSecondCalc = (CalcTable[1]*MagDumpTime)*(CalcTable[4]*CalcTable[5]), 0, (CalcTable[1]/CalcTable[3])*CalcTable[4]*CalcTable[5]
 	local TimeSpentShootingCalc, TimeSpentReloadingCalc = MinuteReloadTime*MagDumpTime, MinuteReloadTime*CalcTable[6]
 	if pcall(tonumber(CalcTable[8])) and pcall(tonumber(CalcTable[7])) > 0 then EffectCalc = (CalcTable[7]/CalcTable[8]) end
 	if DamagePerMinute then table.insert(AnswersTable, ">>[OUTPUT]: Damage Per Minute: "..tostring(MinuteReloadTime*(DamagePerMagCalc+EffectCalc)).."\n") end
