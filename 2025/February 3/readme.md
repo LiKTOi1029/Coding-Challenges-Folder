@@ -18,6 +18,7 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 4. NameLogs - Should the script ask the user to name every log made?
 5. DefaultIn - Default input file
 6. DefaultOut - Default output file
+7. LogStartingInformation - Logs the starting information of the gun inputted
 ## Changelog
 ### 2025/2/21
  - Added a new option to `settings.toml` for switching between simulating a whole minute or outputting the average when calculating Shooting/Minute and Reload/Minute. Please note this is still all experimental and subject to change.
