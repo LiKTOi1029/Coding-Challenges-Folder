@@ -1,4 +1,4 @@
-Gunnum=8
+Gunnum=5
 
 [Ronson_55_1]
 DamagePerMinute=15950.27700831
@@ -34,17 +34,3 @@ DamagePerMagazine=8448.75
 DamagePerSecond=337.95
 TimeSpentReloading=10.980392156863
 TimeSpentShooting=49.019607843137
-
-[testgun_6]
-DamagePerMinute=6819.3103448276
-DamagePerMagazine=380.30769230769
-DamagePerSecond=3.1692307692308
-TimeSpentReloading=26.896551724138
-TimeSpentShooting=33.103448275862
-
-[testgun_7]
-DamagePerMinute=3090
-DamagePerMagazine=103
-DamagePerSecond=3.4333333333333
-TimeSpentReloading=45
-TimeSpentShooting=15

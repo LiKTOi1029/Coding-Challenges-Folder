@@ -8,8 +8,9 @@ You can change the settings in the `settings.toml`. Here is a quick guide:
 3. DamagePerSecond - Enables damage per second calculation
 4. TimeSpentReloading - Enables reload time per minute calculation
 5. TimeSpentShooting - Enables shooting time per minute calculation
-6. OneZombie - Enables calculation for damage per enemy (other formulas calculate for total damage per X time)
-7. OneProjectile - Enables calculation for single projectile damage (other formulas calculate for total damage per X time)
+6. Simulate - Should the script simulate a minute or average it when calculating Reloading/Minute and Shooting/Minute
+7. OneZombie - Enables calculation for damage per enemy (other formulas calculate for total damage per X time)
+8. OneProjectile - Enables calculation for single projectile damage (other formulas calculate for total damage per X time)
 ### GLOBAL_SETTINGS
 1. AllAtOnce - Type all the details of your gun in one prompt separated by spaces or one by one as the script asks?
 2. FileUsage - Should it use `DefaultIn` and `DefaultOut` as the input file and output files respectively?
