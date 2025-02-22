@@ -1,5 +1,8 @@
 @echo off
-SET Monster=hello, how are you, bye
-echo %Monster%
+setlocal
+set Monetary=abdul
+set Money=dinar
+set Mon
+> con echo %Mon%
 pause
 cls
