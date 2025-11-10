@@ -1,18 +1,36 @@
 #include <iostream>
 #include <string>
-#include <list>
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
+vector<char> Swapper(vector<char> Vector, int Index_One, int Index_Two)
+{
+	char Temporary;
+	Temporary = Vector[Index_One];
+	Vector[Index_One] = Vector[Index_Two];
+	Vector[Index_Two] = Temporary;
+	return Vector;
+}
+
 string PalindromeCheckerFunction(string Original_Text)
 {
-	list<char> Full_Char_List;
+	vector<char> Full_Vector(0);
 	int Length = Original_Text.length();
+	string Result;
 	cout << Length << endl;
 	for (int i = 0; i < Length; i++)
 	{
 		char Character = Original_Text[i];
-		cout << Character << endl;
+		cout << 1;
+		Full_Vector.push_back(Character);
+		cout << 2;
+		cout << Full_Vector[i] << endl;
+	}
+	for (int i = 0; i < ceil(Length/2); i++)
+	{
+		
 	}
 	return "";
 }
