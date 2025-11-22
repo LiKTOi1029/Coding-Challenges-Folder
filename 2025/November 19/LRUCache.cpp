@@ -3,38 +3,62 @@
 #include <string>
 #include <locale>
 
-std::string LowercaseFunction(std::string Input;)
+void Iterator(std::vector<int> Vector)
 {
-	std::locale Locale;
-	std::string Result;
-	for (std::string::size_type i=0; i < Input.max_size(); ++i)
-	{
-		std::tolower(Input[i],Locale);
-	}
-	std::cout << Input << std::endl;
-	return Input;
-}
-int main()
-{
-	std::vector<int,5> = LRUCache;
-	std::string Choice;
-	std::cout << "Input an integer to add to the Cache, current cache items: \n" <<
-	for (auto item = LRUCache.begin(); item != LRUCache.end(); ++i)
+	for (auto item = Vector.begin(); item != Vector.end(); ++item)
 	{
 		std::cout << *item << " ";
 	}
+}
+int main()
+{
+	std::vector<int> LRUCache;
+	int Limit;
+	int UserInput;
+	std::string Choice;
+	std::cout << "Set a limit for the cache (integral, don't do a long ass number please): " << std::endl;
+	std::cin >> Limit;
 	std::cout << std::endl;
-	std::cout << "A) Add a number\nU) Use a number\nEXIT) Exit the script\n";
-	std::cin >> Choice;
-	if (Choice == "A") 
+	while (Choice != "EXIT")
 	{
-		if (LRUCache.max_size() == LRUCache.size()) 
+		int Size = LRUCache.size();
+		std::cout << "Input an integer to add to the Cache, current cache items: \n";
+		Iterator(LRUCache);
+		std::cout << std::endl;
+		std::cout << "A) Add a number\nU) Use a number\nEXIT) Exit the script\n";
+		std::cin >> Choice;
+		if (Choice == "A") 
 		{
-			
+			if (Limit == Size) 
+			{
+				LRUCache.pop_back();
+				std::cout << "Enter an integer: ";
+				std::cin >> UserInput;
+				LRUCache.insert(LRUCache.begin(), UserInput);
+			}
+			else
+			{
+				std::cout << "Enter an integer: ";
+				std::cin >> UserInput;
+				LRUCache.insert(LRUCache.begin(), UserInput);
+			}
 		}
-		else 
+		else if (Choice == "U")
 		{
-			
+			if (!LRUCache.empty())
+			{
+				Iterator(LRUCache);
+				std::cout << std::endl << "Which number would you like to alter? The index is from 0 to "
+						  << Size-1 << ": " << std::endl;
+				std::cin >> UserInput;
+				int Temporary = LRUCache[UserInput];
+				LRUCache.erase(LRUCache.begin() + UserInput);
+				LRUCache.insert(LRUCache.begin(), Temporary);
+			}
+			else 
+			{
+				std::cout << "There are currently no values in the cache! Add some new numbers to it!" << std::endl;
+			}
 		}
 	}
 }
