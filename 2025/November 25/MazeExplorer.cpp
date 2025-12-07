@@ -8,6 +8,14 @@ typedef std::string string;
 
 int Solve()
 {
+	
+	std::map<char,int> MazeSheet;
+	MazeSheet['-'] = 1;
+	MazeSheet['|'] = 1;
+	MazeSheet[' '] = 0;
+	MazeSheet['X'] = -2;
+	MazeSheet['O'] = 2;
+	
 	std::ifstream InputFile("Maze.maze");
 	string FileContents;
 	std::stringstream Buffer;
@@ -16,20 +24,20 @@ int Solve()
 	
 	InputFile.close();
 	
-	std::cout << FileContents << "\n";
+	for (char Tile : FileContents)
+	{
+		if (MazeSheet[Tile] == 2)
+		{
+			std::cout << "I found " << Tile << " and now I'm exiting!\n";
+			break;
+		}
+	}
 	
 	return 0;
 }
 
 int main()
 {
-	std::map<char,int> MazeSheet;
-	MazeSheet['-'] = 1;
-	MazeSheet['|'] = 1;
-	MazeSheet[' '] = 0;
-	MazeSheet['X'] = -2;
-	MazeSheet['O'] = 2;
-	
 	int Input;
 	std::cout << "Main Menu\n";
 	std::cout << "1) Solve Maze File\n";
